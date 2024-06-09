@@ -1,6 +1,6 @@
 # Project 3: Around The U.S.
 
-- [Link to the project on GitHub](https://queenhekate.github.io/se_project_aroundtheus/).
+[Link to the project on GitHub](https://queenhekate.github.io/se_project_aroundtheus/).
 
 ### Overview
 
