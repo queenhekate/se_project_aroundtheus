@@ -19,3 +19,5 @@ The project was developed using a Figma file as a reference. Utilizing Figma mai
 **Images**
 
 Images were optimized [here](https://tinypng.com/), so the project loads faster.
+
+- [Link to the project on GitHub](https://queenhekate.github.io/se_project_aroundtheus/).
