@@ -1,0 +1,10 @@
+.footer {
+  width: 90%;
+  margin: auto;
+  height: 60px;
+}
+
+.footer__author {
+  font-size: 12px;
+  line-height: 18px;
+}
