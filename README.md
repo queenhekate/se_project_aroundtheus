@@ -1,5 +1,7 @@
 # Project 3: Around The U.S.
 
+- [Link to the project on GitHub](https://queenhekate.github.io/se_project_aroundtheus/).
+
 ### Overview
 
 - Intro
@@ -20,4 +22,4 @@ The project was developed using a Figma file as a reference. Utilizing Figma mai
 
 Images were optimized [here](https://tinypng.com/), so the project loads faster.
 
-- [Link to the project on GitHub](https://queenhekate.github.io/se_project_aroundtheus/).
+
