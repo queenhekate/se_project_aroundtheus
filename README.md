@@ -1,5 +1,7 @@
 # Project 3: Around The U.S.
 
+[Link to the project on GitHub](https://queenhekate.github.io/se_project_aroundtheus/).
+
 ### Overview
 
 - Intro
@@ -8,14 +10,14 @@
 
 **Intro**
 
-This project is made so all the elements are displayed correctly on popular screen sizes. HTML, CSS Flexbox, Grid properties, pseudo classes and media queries are artfully sewn together to create a dynamic interactive website that works on a variety of screen resolutions.
+This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
 
 **Figma**
-
-The project was developed using a Figma file as a reference. Utilizing Figma maintained the integrity of the desiger's original intent. Converting designer specifications into a functional website was a straightforward process with the use of Figma.
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
 **Images**
 
-Images were optimized [here](https://tinypng.com/), so the project loads faster.
+The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
+
+Good luck and have fun!
