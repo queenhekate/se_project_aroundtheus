@@ -1,18 +1,24 @@
 .header {
-  padding: 74px;
-  margin-left: auto;
-  margin-right: auto;
-  opacity: 70%;
-  border-bottom: 1px solid #545454;
+  padding-top: 40px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(84, 84, 84, 1);
+}
+
+.header__logo {
+  width: 173px;
+  height: 33px;
+  margin: 0;
+  padding: 40px 0 30px;
 }
 
 @media screen and (max-width: 420px) {
   .header {
-    width: 320px;
-    height: 56px;
-    opacity: 0px;
-    padding: 28px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
+  }
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    margin: 0;
+    padding-top: 28px;
   }
 }
