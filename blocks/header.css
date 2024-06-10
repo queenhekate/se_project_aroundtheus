@@ -1,5 +1,5 @@
 .header {
-  padding-top: 40px;
+  padding: 45px 0 41px;
   margin: 0 auto;
   border-bottom: 1px solid rgba(84, 84, 84, 1);
 }
@@ -11,14 +11,14 @@
   padding: 40px 0 30px;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 600px) {
   .header {
     margin: 0;
+    padding: 28px 0 32px;
   }
   .header__logo {
     width: 126px;
     height: 24px;
-    margin: 0;
-    padding-top: 28px;
+    margin-left: 27px;
   }
 }
