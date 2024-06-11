@@ -51,7 +51,7 @@
 
 .profile__title {
   font-size: 42px;
-  line-height: 1.2;
+  line-height: 48px;
   font-weight: 500;
   grid-area: title;
   margin: 0;
@@ -151,7 +151,6 @@
   .profile__description {
     width: 100%;
     text-align: center;
-    font-size: 16px;
   }
 
   .profile__add-button {
@@ -163,7 +162,7 @@
 @media screen and (max-width: 320px) {
   .profile__title {
     text-align: center;
-    min-width: 196px;
+    max-width: 196px;
     margin: 0;
   }
 
@@ -192,6 +191,7 @@
     max-width: 120px;
     max-height: 120px;
     padding: 0;
+    margin-bottom: 20px;
   }
 
   .profile__info {
