@@ -15,8 +15,7 @@
   width: 100%;
   position: relative;
   margin: 0 auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  box-sizing: border-box;
 }
 
 .page__content {
@@ -35,8 +34,6 @@
 
 @media screen and (max-width: 320px) {
   .page__section {
-    padding-top: 86px 0 42px;
-    padding-bottom: 42px;
     max-width: 320px;
   }
   .page__content {

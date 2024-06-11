@@ -1,12 +1,23 @@
 .footer {
-  margin: auto;
+  margin: 67px auto 60px;
 }
 
 .footer__author {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 16.94px;
+  line-height: 21.78px;
   text-align: left;
-  color: #fff;
+  color: rgba(84, 84, 84, 1);
   margin: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    margin: 36px auto 48px;
+  }
+
+  .footer__author {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
 }
