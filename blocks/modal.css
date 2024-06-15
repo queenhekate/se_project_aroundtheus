@@ -41,6 +41,10 @@
   cursor: pointer;
 }
 
+.modal__close:hover {
+  opacity: 60%;
+}
+
 .modal__heading {
   font-family: "Inter", Arial, sans-serif;
   font-size: 24px;
@@ -85,11 +89,15 @@
   margin-right: auto;
 }
 
+.modal__button:hover {
+  opacity: 80%;
+}
+
 @media screen and (max-width: 650px) {
   .modal__container {
     width: 282px;
     height: 322px;
-    padding: 25px 20px;
+    padding: 0;
     justify-content: space-around;
   }
 
@@ -102,10 +110,14 @@
 
   .modal__heading {
     width: 238px;
+    font-size: 18px;
+    margin: 0;
   }
 
   .modal__form {
     width: 238px;
+    padding: 0;
+    margin: 0;
   }
 
   .modal__form_input {
