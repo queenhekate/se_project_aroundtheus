@@ -24,3 +24,17 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const profileEditBtn = document.querySelector("#profile-edit-button");
+const profileEditModal = document.querySelector("#profile-edit-modal");
+const profileCloseModalBtn = document.querySelector("#profile-close-modal");
+
+profileEditBtn.addEventListener("click", () => {
+  console.log("button clicks");
+  profileEditModal.classList.add("modal_opened");
+});
+
+profileCloseModalBtn.addEventListener("click", () => {
+  console.log("button clicks");
+  profileEditModal.classList.remove("modal_opened");
+});
