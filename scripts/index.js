@@ -25,16 +25,62 @@ const initialCards = [
   },
 ];
 
+// Elements 
+
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileCloseModalBtn = document.querySelector("#profile-close-modal");
+const profileTitle = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
+const profileInputTitle = document.querySelector("#profile_input_title");
+const profileInputDescription = document.querySelector(
+  "#profile_input_description"
+);
+const profileFormElement = document.querySelector(".modal__form");
+const CardTemplate = document.querySelector("#card-template").content.firstElementChild;
+const cardsListEl = document.querySelector(".cards__list")
+
+// Functions
+
+function closePopup() {
+  profileEditModal.classList.remove("modal_opened");
+}
+
+function getCardElement(cardData) {
+  let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  let cardImageEl = cardTemplate.querySelector(".card__image");
+  let cardTitleEl = cardTemplate.querySelector(".card__title");
+  let cardImageEl.alt = cardTemplate.querySelector(".card__title");
+  cardTitleEl.textContent = cardData.name;
+  cardImageEl.link = cardData.link;
+  cardAltTxtEl.alt = cardData.name;
+
+}
+
+
+// Event Handlers
+
+function handleProfileEditSubmit(e) => {
+  e.preventDefault();
+  profileTitle.textContent = profileInputTitle.value;
+  profileDescription.textContent = profileInputDescription.value;
+  closePopup();
+}
+
+  // Event Listeners
 
 profileEditBtn.addEventListener("click", () => {
-  console.log("button clicks");
+  profileInputTitle.value = profileTitle.textContent;
+  profileInputDescription.value = profileDescription.textContent;
+  closePopup();
   profileEditModal.classList.add("modal_opened");
 });
 
-profileCloseModalBtn.addEventListener("click", () => {
-  console.log("button clicks");
-  profileEditModal.classList.remove("modal_opened");
-});
+profileCloseModalBtn.addEventListener("click", closePopup);
+
+profileFormElement.addEventListener("submit", handleProfileEditSubmit);
+
+initialCards.forEach((cardData) => {
+const cardElement = getCardElement(cardData);
+  cardsListEl.prepend(cardElement);
+})
