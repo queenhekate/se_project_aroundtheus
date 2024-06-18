@@ -72,12 +72,12 @@
   text-align: left;
 }
 
-.modal__form_input {
+.modal__form-input {
   outline: none;
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 1 px rgba(0, 0, 0, 0.2);
+  border-bottom: 1 px gray;
   width: 358px;
   margin-bottom: 30px;
   height: 27px;
