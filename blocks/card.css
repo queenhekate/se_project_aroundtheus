@@ -41,11 +41,44 @@
   width: 21px;
   border: none;
   cursor: pointer;
-  transition: 2s;
+  transition: 1s;
+}
+
+.card__like-button-active {
+  background: transparent url(../images/Union.svg) center no-repeat;
+  height: 18px;
+  width: 21px;
+  border: none;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.card__image-container {
+  position: relative;
+  width: 282px;
+  height: 282px;
+}
+
+.card__image-button {
+  position: absolute;
+  top: 10%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background: transparent url(../images/Trash.svg) center no-repeat;
+  border: none;
+  cursor: pointer;
+  height: 19px;
+  width: 18px;
+  transition: 1s;
 }
 
 .card__like-button:hover {
-  opacity: 50%;
+  opacity: 60%;
+}
+
+.card__image-button:hover {
+  opacity: 60%;
 }
 
 @media screen and (max-width: 320px) {
