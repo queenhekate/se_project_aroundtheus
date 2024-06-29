@@ -74,6 +74,7 @@ function getCardElement(cardData) {
   cardLikeBtn.addEventListener("click", () => {
     cardLikeBtn.classList.toggle("card__like-button-active");
   });
+
   // add event listener delete
   const cardDelBtn = cardElement.querySelector(".card__image-button");
   cardDelBtn.addEventListener("click", () => {
