@@ -15,6 +15,16 @@
 
 .modal_opened {
   display: flex;
+  animation: fadein 2s;
+}
+
+@keyframes modal_opened {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modal__container {
