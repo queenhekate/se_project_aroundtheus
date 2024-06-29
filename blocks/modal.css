@@ -11,20 +11,15 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  opacity: 0;
+  transition: visibility 0s linear 1s, opacity 1s linear;
 }
 
 .modal_opened {
   display: flex;
-  animation: fadein 2s;
-}
-
-@keyframes modal_opened {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 1s;
 }
 
 .modal__container {
@@ -44,8 +39,13 @@
 .modal__container_preview-image {
   margin: auto;
   display: block;
-  width: 80%;
-  max-width: 820px;
+  background: transparent;
+  max-width: 75vw;
+  max-height: 75vw;
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s ease;
 }
 
 .modal__caption {
