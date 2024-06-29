@@ -57,6 +57,7 @@
   position: relative;
   width: 282px;
   height: 282px;
+  cursor: pointer;
 }
 
 .card__image-button {

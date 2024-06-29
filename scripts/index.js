@@ -82,21 +82,24 @@ function getCardElement(cardData) {
 
   // add event listener image
 
-  const imageModal = document.querySelector("#image-modal");
-  const modalImg = imageModal.querySelector("card__image");
-  const captionText = imageModal.querySelector("modal__caption");
-  cardImageEl.addEventListener("click", () => {
-    cardImageEl.classList.toggle(".modal__image");
-    cardImageEl.src = cardData.link;
-    cardImageEl.captionText = cardData.name;
-  });
+  const previewImageModal = document.querySelector("#image-modal");
+  const previewImageElement = previewImageModal.querySelector("card__image");
+  const previewImageLabel = previewImageModal.querySelector("modal__caption");
 
-  // Get the <span> element that closes the modal
-  const imageCloseModalBtn = imageModal.querySelector("#card-close-modal");
+  function handleImageClick(cardData) {
+    openModal(previewImageModal);
+    previewImageElement.src = cardData.link;
+    previewImageElement.alt = cardData.name;
+    previewImageLabel.textContent = cardData.name;
+  }
 
-  // When the user clicks on <span> (x), close the modal
+  // Get the element that closes the modal
+  const imageCloseModalBtn =
+    previewImageModal.querySelector("#card-close-modal");
+
+  // When the user clicks on (x), close the modal
   imageCloseModalBtn.addEventListener("click", function () {
-    closeModal(imageModal);
+    closeModal(previewImageModal);
   });
 
   cardsListEl.prepend(cardElement);
