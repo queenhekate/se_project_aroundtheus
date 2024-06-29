@@ -75,17 +75,29 @@ function getCardElement(cardData) {
     cardLikeBtn.classList.toggle("card__like-button-active");
   });
   // add event listener delete
-  // const cardDelBtn = cardElement.querySelector(".card__image-button");
-  // cardDelBtn.addEventListener("click", () => {
-  //   cardElement.remove(cardElement);
-  // });
+  const cardDelBtn = cardElement.querySelector(".card__image-button");
+  cardDelBtn.addEventListener("click", () => {
+    cardElement.remove(cardElement);
+  });
 
   // add event listener image
-  // cardImageEl.addEventListener("click", () => {});
-  // open modal
-  // find image element inside modal
-  // replace src with card link
-  // replace alt with card title
+
+  const imageModal = document.querySelector("#image-modal");
+  const modalImg = imageModal.querySelector("card__image");
+  const captionText = imageModal.querySelector("modal__caption");
+  cardImageEl.addEventListener("click", () => {
+    cardImageEl.classList.toggle(".modal__image");
+    cardImageEl.src = cardData.link;
+    cardImageEl.captionText = cardData.name;
+  });
+
+  // Get the <span> element that closes the modal
+  const imageCloseModalBtn = imageModal.querySelector("#card-close-modal");
+
+  // When the user clicks on <span> (x), close the modal
+  imageCloseModalBtn.addEventListener("click", function () {
+    closeModal(imageModal);
+  });
 
   cardsListEl.prepend(cardElement);
 }
