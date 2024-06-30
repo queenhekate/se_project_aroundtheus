@@ -96,16 +96,10 @@ function getCardElement(cardData) {
     previewImageLabel.textContent = cardData.name;
   }
 
-  initialCards.forEach((cardData) => {
-    const cardElement = getCardElement(cardData);
-  });
-
-  cardsListEl.prepend(cardElement);
-
-  function getCardElement(cardData) {
-    const cardElement = createCard(cardData);
-    cardsListEl.prepend(cardElement);
-  }
+  // function getCardElement(cardData) {
+  //   const cardElement = createCard(cardData);
+  //   cardsListEl.prepend(cardElement);
+  // }
 
   function createCard(item) {
     return cardElement;
@@ -151,4 +145,13 @@ function getCardElement(cardData) {
   cardAddForm.addEventListener("submit", handleAddCardSubmit);
 
   cardImageEl.addEventListener("click", () => handleImageClick(cardData));
+}
+
+initialCards.forEach((cardData) => {
+  console.log(cardData);
+  createCard(cardData);
+});
+
+function createCard(item) {
+  cardsListEl.prepend(getCardElement(item));
 }
