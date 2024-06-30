@@ -15,6 +15,13 @@
   background-position: center;
 }
 
+.card__image_preview {
+  margin: 10px 0;
+  object-fit: contain;
+  width: 80%;
+  height: 80%;
+}
+
 .card__description {
   display: flex;
   justify-content: space-between;
@@ -65,13 +72,13 @@
   top: 10%;
   left: 90%;
   transform: translate(-50%, -50%);
-  z-index: 2;
   background: transparent url(../images/Trash.svg) center no-repeat;
   border: none;
   cursor: pointer;
   height: 19px;
   width: 18px;
   transition: 1s;
+  z-index: 1;
 }
 
 .card__like-button:hover {

@@ -31,8 +31,8 @@ const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileForm = document.forms["profile-form"];
 const cardAddModal = document.querySelector("#card-add-modal");
 const cardAddForm = document.forms["add-card-form"];
-const previewModal = document.querySelector(".modal__type_preview");
-const previewImageElement = previewModal.querySelector(".card__image");
+const previewModal = document.querySelector("#modal_type-preview");
+const previewImageElement = previewModal.querySelector(".card__image_preview");
 const previewImageLabel = previewModal.querySelector(".modal__caption");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -104,7 +104,8 @@ initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
 });
 
-function showPreview() {
+function showPreview(cardData) {
+  previewImageElement.src = card.image;
   toggleModalWindow(previewModal);
 }
 
@@ -125,11 +126,10 @@ function getCardElement(cardData) {
   // add event listener delete
   const cardDelBtn = cardElement.querySelector(".card__image-button");
   cardDelBtn.addEventListener("click", () => {
-    cardElement.remove(cardElement);
+    cardElement.remove();
   });
 
   // add event listener image
-
   function handleImageClick(cardData) {
     openModal(previewModal);
     previewImageElement.src = cardData.link;

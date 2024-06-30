@@ -18,7 +18,7 @@
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.6s;
+  transition: visibility 0.5s, opacity 0.5s ease;
 }
 
 .modal__container {
@@ -35,15 +35,19 @@
   align-content: center;
 }
 
-.modal__type_preview {
+/* .modal_type-preview {
   margin: auto;
-  display: block;
-  background: transparent;
+  transition: visibility 0.5s, opacity 0.5s ease;
+} */
+
+.modal__container_type_preview {
   max-width: 75vw;
   max-height: 75vw;
-  position: relative;
-  visibility: hidden;
-  opacity: 0;
+  height: auto;
+  width: auto;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
   transition: visibility 0.5s, opacity 0.5s ease;
 }
 
@@ -55,11 +59,8 @@
   text-align: left;
   background-color: transparent;
   color: rgba(255, 255, 255, 1);
-  margin: auto;
+  margin: 0;
   display: block;
-  width: 80%;
-  max-width: 290px;
-  padding: 10px 0;
   /* height: 150px; */
 }
 
