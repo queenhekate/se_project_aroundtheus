@@ -137,14 +137,11 @@ function getCardElement(cardData) {
     previewImageLabel.textContent = cardData.name;
   }
 
-  cardElement.addEventListener("click", () => handleImageClick(cardData));
+  cardImageEl.addEventListener("click", () => handleImageClick(cardData));
 
   console.log(handleImageClick);
 
   // When the user clicks on (x), close the modal
-  previewCloseModalBtn.addEventListener("click", function () {
-    closeModal(previewModal);
-  });
 
   cardsListEl.prepend(cardElement);
 }
@@ -160,3 +157,7 @@ function handleAddCardSubmit(e) {
 
   closeModal(cardAddModal);
 }
+
+previewCloseModalBtn.addEventListener("click", function () {
+  closeModal(previewModal);
+});

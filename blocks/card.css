@@ -17,9 +17,10 @@
 
 .card__image_preview {
   margin: 10px 0;
+  padding: 0;
   object-fit: contain;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
 }
 
 .card__description {
@@ -69,8 +70,8 @@
 
 .card__image-button {
   position: absolute;
-  top: 10%;
-  left: 90%;
+  top: 20px;
+  right: 10px;
   transform: translate(-50%, -50%);
   background: transparent url(../images/Trash.svg) center no-repeat;
   border: none;
@@ -78,7 +79,6 @@
   height: 19px;
   width: 18px;
   transition: 1s;
-  z-index: 1;
 }
 
 .card__like-button:hover {
@@ -89,8 +89,8 @@
   opacity: 60%;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 720px) {
   .card__image {
-    width: 100%;
+    margin: 0;
   }
 }
