@@ -139,10 +139,6 @@ function getCardElement(cardData) {
 
   cardImageEl.addEventListener("click", () => handleImageClick(cardData));
 
-  console.log(handleImageClick);
-
-  // When the user clicks on (x), close the modal
-
   cardsListEl.prepend(cardElement);
 }
 

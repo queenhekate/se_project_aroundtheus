@@ -78,7 +78,11 @@
       <div class="modal__container">
         <button class="modal__close" id="card-close-modal"></button>
         <p class="modal__heading">New Place</p>
-        <form class="modal__form" id="add-card-form">
+        <form
+          class="modal__form"
+          id="add-card-form"
+          onsubmit="handleAddCardSubmit(event)"
+        >
           <input
             class="modal__form-input modal_input_type_title"
             type="text"
