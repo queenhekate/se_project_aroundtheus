@@ -39,18 +39,15 @@ const cardTemplate =
 const cardsListEl = document.querySelector(".cards__list");
 
 // Buttons and other DOM nodes
-
+const closeButtons = document.querySelectorAll(".modal__close");
+closeButtons.forEach((button) => {
+  const modal = button.closest(".modal");
+  button.addEventListener("click", () => closeModal(modal));
+});
 const profileEditBtn = document.querySelector("#profile-edit-button");
-const profileCloseModalBtn = profileEditModal.querySelector(
-  "#profile-close-modal"
-);
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
-
 const cardAddNewBtn = document.querySelector("#card-add-button");
-const cardCloseModalBtn = cardAddModal.querySelector("#card-close-modal");
-
-const previewCloseModalBtn = previewModal.querySelector("#card-close-modal");
 
 // Form data
 
@@ -90,24 +87,11 @@ profileEditBtn.addEventListener("click", () => {
 
 cardAddNewBtn.addEventListener("click", () => openModal(cardAddModal));
 
-profileCloseModalBtn.addEventListener("click", function () {
-  closeModal(profileEditModal);
-});
-
-cardCloseModalBtn.addEventListener("click", function () {
-  closeModal(cardAddModal);
-});
-
 profileForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
 });
-
-function showPreview(cardData) {
-  previewImageElement.src = card.image;
-  toggleModalWindow(previewModal);
-}
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -138,8 +122,15 @@ function getCardElement(cardData) {
   }
 
   cardImageEl.addEventListener("click", () => handleImageClick(cardData));
-
   cardsListEl.prepend(cardElement);
+
+  // function createCard(item) {
+  //   return cardElement;
+  // }
+  // function getCardElement(cardData) {
+  //   const cardElement = createCard(cardData);
+  //   cardsListEl.prepend(cardElement);
+  // }
 }
 
 function handleAddCardSubmit(e) {
@@ -150,10 +141,6 @@ function handleAddCardSubmit(e) {
     name: title,
     link: link,
   });
-
+  evt.target.reset();
   closeModal(cardAddModal);
 }
-
-previewCloseModalBtn.addEventListener("click", function () {
-  closeModal(previewModal);
-});
