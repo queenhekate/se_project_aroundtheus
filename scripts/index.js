@@ -48,6 +48,8 @@ const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const cardAddNewBtn = document.querySelector("#card-add-button");
+const addCardTitleInput = document.querySelector("#card-input-title");
+const addCardImageInput = document.querySelector("#card-input-url");
 
 // Form data
 
@@ -118,32 +120,35 @@ function getCardElement(cardData) {
   // cardsListEl.prepend(cardElement);
   // }
 
-  function createCard(item) {
-    return cardElement;
+  
+  cardImageEl.addEventListener("click", () => handleImageClick(cardData));
 
-    document.addEventListener("DOMContentLoaded", function () {
+  return cardElement;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
       const cardForm = document.getElementById("cardForm");
 
       if (cardForm) {
         cardForm.addEventListener("submit", handleAddCardSubmit);
       }
     });
-  }
 
-  function handleAddCardSubmit(e) {
-    e.preventDefault();
-    cardTitle.textContent = cardInputTitle.value;
-    cardDescription.textContent = cardInputDescription.value;
-    e.target.reset();
-    closeModal();
-  }
+
+
+function handleAddCardSubmit(e) {
+  e.preventDefault();
+const newCard = ( 
+name: addCardTitleInput.value,
+link: addCardImageInput.value,
+);
+createCard(newCard);
+  e.target.reset();
+  closeModal(cardAddModal);
+};
 
   cardAddForm.addEventListener("submit", handleAddCardSubmit);
 
-  cardImageEl.addEventListener("click", () => handleImageClick(cardData));
-
-  return cardElement;
-}
 
 initialCards.forEach((cardData) => {
   console.log(cardData);
