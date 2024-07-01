@@ -120,35 +120,31 @@ function getCardElement(cardData) {
   // cardsListEl.prepend(cardElement);
   // }
 
-  
   cardImageEl.addEventListener("click", () => handleImageClick(cardData));
 
   return cardElement;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-      const cardForm = document.getElementById("cardForm");
+  const cardForm = document.getElementById("cardForm");
 
-      if (cardForm) {
-        cardForm.addEventListener("submit", handleAddCardSubmit);
-      }
-    });
-
-
+  if (cardForm) {
+    cardForm.addEventListener("submit", handleAddCardSubmit);
+  }
+});
 
 function handleAddCardSubmit(e) {
   e.preventDefault();
-const newCard = ( 
-name: addCardTitleInput.value,
-link: addCardImageInput.value,
-);
-createCard(newCard);
+  const newCard = {
+    name: addCardTitleInput.value,
+    link: addCardImageInput.value,
+  };
+  createCard(newCard);
   e.target.reset();
   closeModal(cardAddModal);
-};
+}
 
-  cardAddForm.addEventListener("submit", handleAddCardSubmit);
-
+cardAddForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((cardData) => {
   console.log(cardData);
