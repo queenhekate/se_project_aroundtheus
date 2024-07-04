@@ -115,23 +115,10 @@ function getCardElement(cardData) {
     previewImageLabel.textContent = cardData.name;
   }
 
-  // function getCardElement(cardData) {
-  // const cardElement = createCard(cardData);
-  // cardsListEl.prepend(cardElement);
-  // }
-
   cardImageEl.addEventListener("click", () => handleImageClick(cardData));
 
   return cardElement;
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cardForm = document.getElementById("cardForm");
-
-  if (cardForm) {
-    cardForm.addEventListener("submit", handleAddCardSubmit);
-  }
-});
 
 function handleAddCardSubmit(e) {
   e.preventDefault();
