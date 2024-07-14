@@ -76,9 +76,11 @@ function closeModal(modal) {
 
 //Add a click event to the “overlay” background
 //call the same close() function as the close button
-const modal = document.querySelector(".modal");
+
 const handleModalClick = (modal) => (event) => {
-  modal.addEventListener("click", () => closeModal(modal));
+  if (event.target.classList.contains("modal_opened")) {
+    closeModal(modal);
+  }
 };
 
 //close the popup by pressing the Esc key
