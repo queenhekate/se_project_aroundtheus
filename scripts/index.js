@@ -64,32 +64,29 @@ const cardImage = document.querySelector(".card__image");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscKey(modal));
+  document.addEventListener("click", handleModalClick(modal));
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKey);
+  document.removeEventListener("click", handleModalClick);
 }
 
 //Add a click event to the “overlay” background
 //call the same close() function as the close button
-
-// document.onmousedown = function () {
-//   if (event.target.className != "modal")
-//     document.getElementsByClassName("modal")[0].style.display = "none";
-// };
-// function handleModalClick(modal) {
-//   const modalOverlay = document.querySelector(".modal");
-//   modalOverlay.addEventListener("click", () => closeModal(modal));
-// }
+const modalOverlay = document.querySelector(".modal");
+const handleModalClick = (modal) => (event) => {
+  modalOverlay.addEventListener("click", () => closeModal(modal));
+};
 
 //close the popup by pressing the Esc key
-function keyHandler(e) {
-  if (e.key === "Esc") {
+const handleEscKey = (modal) => (event) => {
+  if (event.key === "Escape") {
     closeModal(modal);
   }
-}
-
-modal.addEventListener("keydown", keyHandler);
+};
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
