@@ -70,6 +70,27 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
+//Add a click event to the “overlay” background
+//call the same close() function as the close button
+
+// document.onmousedown = function () {
+//   if (event.target.className != "modal")
+//     document.getElementsByClassName("modal")[0].style.display = "none";
+// };
+// function handleModalClick(modal) {
+//   const modalOverlay = document.querySelector(".modal");
+//   modalOverlay.addEventListener("click", () => closeModal(modal));
+// }
+
+//close the popup by pressing the Esc key
+function keyHandler(e) {
+  if (e.key === "Esc") {
+    closeModal(modal);
+  }
+}
+
+modal.addEventListener("keydown", keyHandler);
+
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileInputTitle.value;
