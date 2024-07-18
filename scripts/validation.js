@@ -26,14 +26,6 @@ function hasInvalidInput(inputList) {
   return !inputList.every((inputEl) => inputEl.validity.valid);
 }
 
-function checkform(inputEls, submitBtn, { inactiveButtonClass }) {
-  if (hasInvalidInput(inputEls)) {
-    formEl.querySelector(".modal__button").disabled = !cansubmit;
-    return;
-  }
-  formEl.querySelector(".modal__button").enabled = cansubmit;
-}
-
 function toggleButtonState(inputEls, submitBtn, { inactiveButtonClass }) {
   if (hasInvalidInput(inputEls)) {
     submitBtn.classList.add(inactiveButtonClass);
@@ -46,8 +38,9 @@ function toggleButtonState(inputEls, submitBtn, { inactiveButtonClass }) {
 
 function setEventListeners(formEl, options) {
   const { inputSelector } = options;
+  const { submitButtonSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  const submitBtn = formEl.querySelector(".modal__button");
+  const submitBtn = [...formEl.querySelectorAll(submitButtonSelector)];
   toggleButtonState(inputEls, submitBtn, options);
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {

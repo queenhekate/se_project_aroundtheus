@@ -70,8 +70,8 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscKey);
-  document.removeEventListener("click", handleModalClick);
+  document.removeEventListener("keydown", handleEscKey(modal));
+  document.removeEventListener("click", handleModalClick(modal));
 }
 
 //Add a click event to the “overlay” background
@@ -155,9 +155,14 @@ cardAddForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((cardData) => {
   console.log(cardData);
-  createCard(cardData);
+  renderCard(cardData);
 });
 
-function createCard(item) {
-  cardsListEl.prepend(getCardElement(item));
+// function createCard(item) {
+//   cardsListEl.prepend(getCardElement(item));
+// }
+
+function renderCard(item, method = "prepend") {
+  const cardElement = getCardElement(item);
+  cardsListEl[method](cardElement);
 }
