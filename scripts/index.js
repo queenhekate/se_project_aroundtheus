@@ -71,7 +71,7 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKey);
-  document.removeEventListener("mousedown", handleModalClick);
+  modal.removeEventListener("mousedown", handleModalClick);
 }
 
 //call the same close() function as the close button
