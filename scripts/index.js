@@ -65,13 +65,13 @@ const cardImage = document.querySelector(".card__image");
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKey);
-  modal.addEventListener("click", handleModalClick);
+  modal.addEventListener("mousedown", handleModalClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKey);
-  document.removeEventListener("click", handleModalClick);
+  document.removeEventListener("mousedown", handleModalClick);
 }
 
 //call the same close() function as the close button
