@@ -145,7 +145,7 @@ function handleAddCardSubmit(e) {
     name: addCardTitleInput.value,
     link: addCardImageInput.value,
   };
-  createCard(newCard);
+  renderCard(newCard);
   e.target.reset();
   closeModal(cardAddModal);
 }
