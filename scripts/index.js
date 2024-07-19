@@ -74,27 +74,8 @@ function closeModal(modal) {
   document.removeEventListener("click", handleModalClick);
 }
 
-//Add a click event to the “overlay” background
-// Event listener to prevent incorrect closure
-
-const modal = document.querySelector(".modal");
-
-modal.addEventListener("mousedown", (event) => {
-  if (!modal.contains(event.target)) {
-    modal.setAttribute("data-mouse-down", "true");
-  }
-});
-
-document.addEventListener("mouseup", (event) => {
-  if (modal.getAttribute("data-mouse-down") === "true") {
-    if (!modal.contains(event.target)) {
-      closeModal();
-    }
-    modal.removeAttribute("data-mouse-down");
-  }
-});
-
 //call the same close() function as the close button
+
 const handleModalClick = (event) => {
   if (event.target.classList.contains("modal_opened")) {
     closeModal(event.target);
