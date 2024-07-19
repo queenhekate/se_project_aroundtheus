@@ -64,29 +64,47 @@ const cardImage = document.querySelector(".card__image");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscKey(modal));
-  document.addEventListener("click", handleModalClick(modal));
+  document.addEventListener("keydown", handleEscKey);
+  modal.addEventListener("click", handleModalClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscKey(modal));
-  document.removeEventListener("click", handleModalClick(modal));
+  document.removeEventListener("keydown", handleEscKey);
+  document.removeEventListener("click", handleModalClick);
 }
 
 //Add a click event to the “overlay” background
-//call the same close() function as the close button
+// Event listener to prevent incorrect closure
 
-const handleModalClick = (modal) => (event) => {
+const modal = document.querySelector(".modal");
+
+modal.addEventListener("mousedown", (event) => {
+  if (!modal.contains(event.target)) {
+    modal.setAttribute("data-mouse-down", "true");
+  }
+});
+
+document.addEventListener("mouseup", (event) => {
+  if (modal.getAttribute("data-mouse-down") === "true") {
+    if (!modal.contains(event.target)) {
+      closeModal();
+    }
+    modal.removeAttribute("data-mouse-down");
+  }
+});
+
+//call the same close() function as the close button
+const handleModalClick = (event) => {
   if (event.target.classList.contains("modal_opened")) {
-    closeModal(modal);
+    closeModal(event.target);
   }
 };
 
 //close the popup by pressing the Esc key
-const handleEscKey = (modal) => (event) => {
+const handleEscKey = (event) => {
   if (event.key === "Escape") {
-    closeModal(modal);
+    closeModal(document.querySelector(".modal_opened"));
   }
 };
 
@@ -158,9 +176,9 @@ initialCards.forEach((cardData) => {
   renderCard(cardData);
 });
 
-// function createCard(item) {
-//   cardsListEl.prepend(getCardElement(item));
-// }
+function createCard(item) {
+  cardsListEl.prepend(getCardElement(item));
+}
 
 function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
