@@ -157,10 +157,6 @@ initialCards.forEach((cardData) => {
   renderCard(cardData);
 });
 
-function renderCard(newCard) {
-  cardsListEl.prepend(getCardElement(item));
-}
-
 function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
   cardsListEl[method](cardElement);
