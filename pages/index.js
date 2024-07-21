@@ -1,3 +1,10 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+//FormValidator class = EditProfile
+const editFormValidator = new FormValidator(settings, editForm);
+//FormValidator class = AddImage
+const addFormValidator = new FormValidator(settings, addForm);
+
 const initialCards = [
   {
     name: "Minnehaha Falls",
@@ -24,6 +31,14 @@ const initialCards = [
     link: "https://www.compass.com/m/f6d367cc15ca0025f0d4911cccdd6befe350606b_img_0_4db8e/640x480.jpg",
   },
 ];
+
+const cardData = {
+  name: "Minnehaha Falls",
+  link: "https://www.planetware.com/wpimages/2019/12/minnesota-in-pictures-beautiful-places-to-photograph-minnehaha-falls.jpg",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getView();
 
 // Wrappers
 
@@ -114,17 +129,17 @@ function getCardElement(cardData) {
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
 
-  // add event listener like button
-  const cardLikeBtn = cardElement.querySelector(".card__like-button");
-  cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-button-active");
-  });
+  // // add event listener like button
+  // const cardLikeBtn = cardElement.querySelector(".card__like-button");
+  // cardLikeBtn.addEventListener("click", () => {
+  //   cardLikeBtn.classList.toggle("card__like-button-active");
+  // });
 
-  // add event listener delete
-  const cardDelBtn = cardElement.querySelector(".card__image-button");
-  cardDelBtn.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  // // add event listener delete
+  // const cardDelBtn = cardElement.querySelector(".card__image-button");
+  // cardDelBtn.addEventListener("click", () => {
+  //   cardElement.remove();
+  // });
 
   // add event listener image
   function handleImageClick(cardData) {
@@ -153,7 +168,6 @@ function handleAddCardSubmit(e) {
 cardAddForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((cardData) => {
-  console.log(cardData);
   renderCard(cardData);
 });
 
