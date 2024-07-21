@@ -49,11 +49,11 @@ _toggleButtonState(this._inputEls, this._submitBtn, this._inactiveButtonClass) {
 _setEventListeners() {
 this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
  this._submitBtn = this._form.querySelector(this._submitButtonSelector);
-  toggleButtonState( this._inputEls, this._submitBtn, config);
+  _toggleButtonState( this._inputEls, this._submitBtn, config);
   this._inputEls.forEach((this._inputSelector) => {
     this._inputSelector.addEventListener("input", (e) => {
-      checkInputValidity(this._formEl, this._inputSelector, config);
-      toggleButtonState( this._inputEls, this._submitBtn, config);
+      _checkInputValidity(this._formEl, this._inputSelector, config);
+      _toggleButtonState( this._inputEls, this._submitBtn, config);
     });
   });
 };
@@ -65,33 +65,14 @@ enableValidation() {
       setEventListeners(this._inputSelector, config);
 };
 
+//resetFormValidation
+reset(){
+
+    document.getElementById("this._form").reset()
+};
+
 const editFormValidator = new FormValidator(config, editForm);
 editFormValidator.enableValidation()
 
 const addFormValidator = new FormValidator(config, addForm);
 addFormValidator.enableValidation()
-
-
-
-
-
-
-
-//resetFormValidation
-
-//Its constructor has two parameters:
-//The first parameter is a settings object that stores selectors and form classes
-//the second one takes a form element to be validated.
-
-// It has private methods for processing the form, which include:
-// checking the field's validity,
-// changing the state of the Submit button,
-// and adding all the needed handlers.
-
-// It has a public method enableValidation(), which enables form validation.
-
-// It has a public method to either:
-// disable the state of the button or
-// reset form validation (including the state of the submit button).
-
-// Create an instance of the FormValidator class for each form that should be validated.
