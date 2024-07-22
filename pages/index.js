@@ -12,12 +12,8 @@ const settings = {
 
 const initialCards = [
   {
-    name: "Minnehaha Falls",
-    link: "https://www.planetware.com/wpimages/2019/12/minnesota-in-pictures-beautiful-places-to-photograph-minnehaha-falls.jpg",
-  },
-  {
-    name: "Boundary Waters Canoe Area Wilderness",
-    link: "https://www.minnpost.com/wp-content/uploads/2022/03/SouthTemperanceLake940.jpg",
+    name: "Balsam Township",
+    link: "https://www.compass.com/m/f6d367cc15ca0025f0d4911cccdd6befe350606b_img_0_4db8e/640x480.jpg",
   },
   {
     name: "Split Rock Lighthouse",
@@ -32,19 +28,19 @@ const initialCards = [
     link: "https://www.planetware.com/wpimages/2019/12/minnesota-in-pictures-beautiful-places-to-photograph-voyageurs-national-park.jpg",
   },
   {
-    name: "Balsam Township",
-    link: "https://www.compass.com/m/f6d367cc15ca0025f0d4911cccdd6befe350606b_img_0_4db8e/640x480.jpg",
+    name: "Minnehaha Falls",
+    link: "https://www.planetware.com/wpimages/2019/12/minnesota-in-pictures-beautiful-places-to-photograph-minnehaha-falls.jpg",
+  },
+  {
+    name: "Boundary Waters Canoe Area Wilderness",
+    link: "https://www.minnpost.com/wp-content/uploads/2022/03/SouthTemperanceLake940.jpg",
   },
 ];
 
 const cardData = [
   {
-    name: "Minnehaha Falls",
-    link: "https://www.planetware.com/wpimages/2019/12/minnesota-in-pictures-beautiful-places-to-photograph-minnehaha-falls.jpg",
-  },
-  {
-    name: "Boundary Waters Canoe Area Wilderness",
-    link: "https://www.minnpost.com/wp-content/uploads/2022/03/SouthTemperanceLake940.jpg",
+    name: "Balsam Township",
+    link: "https://www.compass.com/m/f6d367cc15ca0025f0d4911cccdd6befe350606b_img_0_4db8e/640x480.jpg",
   },
   {
     name: "Split Rock Lighthouse",
@@ -59,8 +55,12 @@ const cardData = [
     link: "https://www.planetware.com/wpimages/2019/12/minnesota-in-pictures-beautiful-places-to-photograph-voyageurs-national-park.jpg",
   },
   {
-    name: "Balsam Township",
-    link: "https://www.compass.com/m/f6d367cc15ca0025f0d4911cccdd6befe350606b_img_0_4db8e/640x480.jpg",
+    name: "Minnehaha Falls",
+    link: "https://www.planetware.com/wpimages/2019/12/minnesota-in-pictures-beautiful-places-to-photograph-minnehaha-falls.jpg",
+  },
+  {
+    name: "Boundary Waters Canoe Area Wilderness",
+    link: "https://www.minnpost.com/wp-content/uploads/2022/03/SouthTemperanceLake940.jpg",
   },
 ];
 
@@ -157,29 +157,6 @@ function getCardElement(cardData) {
   cardTitleEl.textContent = cardData.name;
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
-
-  // // add event listener like button
-  // const cardLikeBtn = cardElement.querySelector(".card__like-button");
-  // cardLikeBtn.addEventListener("click", () => {
-  //   cardLikeBtn.classList.toggle("card__like-button-active");
-  // });
-
-  // // add event listener delete
-  // const cardDelBtn = cardElement.querySelector(".card__image-button");
-  // cardDelBtn.addEventListener("click", () => {
-  //   cardElement.remove();
-  // });
-
-  // add event listener image
-  function handleImageClick(cardData) {
-    openModal(previewModal);
-    previewImageElement.src = cardData.link;
-    previewImageElement.alt = cardData.name;
-    previewImageLabel.textContent = cardData.name;
-  }
-
-  cardImageEl.addEventListener("click", () => handleImageClick(cardData));
-
   return cardElement;
 }
 
