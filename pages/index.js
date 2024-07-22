@@ -126,6 +126,7 @@ cardAddNewBtn.addEventListener("click", () => openModal(cardAddModal));
 
 profileForm.addEventListener("submit", handleProfileEditSubmit);
 const editFormValidator = new FormValidator(settings, profileForm);
+editFormValidator.enableValidation();
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -173,6 +174,7 @@ function handleAddCardSubmit(e) {
 
 cardAddForm.addEventListener("submit", handleAddCardSubmit);
 const addFormValidator = new FormValidator(settings, cardAddForm);
+addFormValidator.enableValidation();
 
 initialCards.forEach((cardData) => {
   renderCard(cardData);
