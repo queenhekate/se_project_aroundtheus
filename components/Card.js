@@ -38,7 +38,7 @@ export default class Card {
   }
 
   _handleDeleteCard() {
-    this._cardElement.remove;
+    this._cardElement.remove();
     this._cardElement = null;
   }
 
@@ -48,11 +48,10 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-    this._setEventListeners;
     this._cardImgElement = this._cardElement.querySelector(".card__image");
     this._cardTitleElement = this._cardElement.querySelector(".card__title");
     this._cardImgElement.src = this._link;
-    this._cardImgElement.src = this._name;
+    this._cardImgElement.alt = this._name;
     this._cardTitleElement.textContent = this._name;
     this._setEventListeners();
     return this._cardElement;
