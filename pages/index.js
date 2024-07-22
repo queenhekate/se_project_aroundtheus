@@ -161,6 +161,13 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
+function handleImageClick(cardData) {
+  openModal(previewModal);
+  previewImageElement.src = cardData.link;
+  previewImageElement.alt = cardData.name;
+  previewImageLabel.textContent = cardData.name;
+}
+
 function handleAddCardSubmit(e) {
   e.preventDefault();
   const newCard = {
@@ -175,12 +182,16 @@ function handleAddCardSubmit(e) {
 cardAddForm.addEventListener("submit", handleAddCardSubmit);
 const addFormValidator = new FormValidator(settings, cardAddForm);
 addFormValidator.enableValidation();
-
-initialCards.forEach((cardData) => {
+initialCards.forEach(cardData) => {
   renderCard(cardData);
-});
+}
+
+function createCard(item) {
+  const cardElement = new Card(item, "#card-template", handleImageClick);
+  return cardElement.getView();
+}
 
 function renderCard(item, method = "prepend") {
-  const cardElement = getCardElement(item);
+  const cardElement = createCard(item);
   cardsListEl[method](cardElement);
 }

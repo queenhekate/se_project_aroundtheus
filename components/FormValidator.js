@@ -69,9 +69,3 @@ export default class FormValidator {
     this._form.reset();
   }
 }
-
-// const editFormValidator = new FormValidator(config, editForm);
-// editFormValidator.enableValidation()
-
-// const addFormValidator = new FormValidator(config, addForm);
-// addFormValidator.enableValidation()
