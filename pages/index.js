@@ -1,9 +1,14 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-//FormValidator class = EditProfile
-const editFormValidator = new FormValidator(settings, editForm);
-//FormValidator class = AddImage
-const addFormValidator = new FormValidator(settings, addForm);
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
 
 const initialCards = [
   {
@@ -120,6 +125,7 @@ profileEditBtn.addEventListener("click", () => {
 cardAddNewBtn.addEventListener("click", () => openModal(cardAddModal));
 
 profileForm.addEventListener("submit", handleProfileEditSubmit);
+const editFormValidator = new FormValidator(settings, profileForm);
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -166,6 +172,7 @@ function handleAddCardSubmit(e) {
 }
 
 cardAddForm.addEventListener("submit", handleAddCardSubmit);
+const addFormValidator = new FormValidator(settings, cardAddForm);
 
 initialCards.forEach((cardData) => {
   renderCard(cardData);
