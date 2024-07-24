@@ -64,9 +64,6 @@ const cardData = [
   // },
 ];
 
-const card = new Card(cardData, "#card-template");
-card.getView();
-
 // Wrappers
 
 const profileEditModal = document.querySelector("#profile-edit-modal");
@@ -142,6 +139,7 @@ profileEditBtn.addEventListener("click", () => {
   profileInputTitle.value = profileTitle.textContent;
   profileInputDescription.value = profileDescription.textContent;
   openModal(profileEditModal);
+  resetValidation(profileEditModal);
 });
 
 cardAddNewBtn.addEventListener("click", () => openModal(cardAddModal));
@@ -149,16 +147,6 @@ cardAddNewBtn.addEventListener("click", () => openModal(cardAddModal));
 profileForm.addEventListener("submit", handleProfileEditSubmit);
 const editFormValidator = new FormValidator(settings, profileForm);
 editFormValidator.enableValidation();
-
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  cardTitleEl.textContent = cardData.name;
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  return cardElement;
-}
 
 function handleImageClick(cardData) {
   openModal(previewModal);
@@ -175,6 +163,7 @@ function handleAddCardSubmit(e) {
   };
   renderCard(newCard);
   e.target.reset();
+  addFormValidator.disableButton();
   closeModal(cardAddModal);
 }
 
