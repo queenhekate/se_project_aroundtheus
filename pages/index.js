@@ -139,7 +139,7 @@ profileEditBtn.addEventListener("click", () => {
   profileInputTitle.value = profileTitle.textContent;
   profileInputDescription.value = profileDescription.textContent;
   openModal(profileEditModal);
-  resetValidation(profileEditModal);
+  FormValidator.resetValidation(profileEditModal);
 });
 
 cardAddNewBtn.addEventListener("click", () => openModal(cardAddModal));

@@ -18,7 +18,7 @@ export default class Card {
       this._handleDeleteCard();
     });
 
-    this._cardImage.addEventListener("click", () => {
+    this._cardImgElement.addEventListener("click", () => {
       this._handleImageClick({
         name: this._name,
         link: this._link,
@@ -47,7 +47,6 @@ export default class Card {
     this._cardImgElement.alt = this._name;
     this._cardTitleElement.textContent = this._name;
     this._likeButton = this._cardElement.querySelector(".card__like-button");
-    this._cardImage = this._cardElement.querySelector(".card__image");
     this._trashButton = this._cardElement.querySelector(".card__image-button");
     this._setEventListeners();
     return this._cardElement;
