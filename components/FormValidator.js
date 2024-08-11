@@ -1,13 +1,18 @@
 export default class FormValidator {
   constructor(config, formEl) {
     this._form = formEl;
-
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
+    this._buttonElement = formEl.querySelector(this._submitButtonSelector);
+  }
+
+  disableButton() {
+    this._buttonElement.setAttribute("disabled", "disabled");
+    this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 
   _showInputError(input) {
