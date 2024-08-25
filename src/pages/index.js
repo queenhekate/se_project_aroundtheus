@@ -3,6 +3,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 
@@ -60,14 +61,14 @@ const userInfo = new UserInfo({
   profileDescriptionSelector: ".profile__description",
 });
 
-// userInfo.setUserInfo({ name: "Name", description: "Description" });
+// Profile Section
 
 profileEditBtn.addEventListener("click", () => {
   const info = userInfo.getUserInfo();
   profileInputTitle.value = info.name;
   profileInputDescription.value = info.description;
   editFormValidator.resetValidation();
-  profileEditModal.openModal();
+  profileEditModal.open(profileEditModal);
 });
 
 const cardTemplate =
@@ -78,13 +79,13 @@ const cardImage = document.querySelector(".card__image");
 // POPUP WITH IMAGE -----
 
 const popupWithImage = new PopupWithImage({
-  popupSelector: ".card__image",
+  popupSelector: "#modal_type-preview",
 });
 
 popupWithImage.setEventListeners();
 
 function handleImageClick(link, name) {
-  popupWithImage.openModal(link, name);
+  popupWithImage.open(link, name);
 }
 
 // FORMS -----
@@ -93,17 +94,17 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileInputTitle.value;
   profileDescription.textContent = profileInputDescription.value;
-  closeModal(profileEditModal);
+  close(profileEditModal);
 }
 
 profileEditBtn.addEventListener("click", () => {
   profileInputTitle.value = profileTitle.textContent;
   profileInputDescription.value = profileDescription.textContent;
-  openModal(profileEditModal);
+  open(profileEditModal);
   editFormValidator.resetValidation();
 });
 
-cardAddNewBtn.addEventListener("click", () => openModal(cardAddModal));
+cardAddNewBtn.addEventListener("click", () => open(cardAddModal));
 
 profileForm.addEventListener("submit", handleProfileEditSubmit);
 const editFormValidator = new FormValidator(settings, profileForm);
@@ -116,6 +117,8 @@ editFormValidator.enableValidation();
 //   previewImageLabel.textContent = cardData.name;
 // }
 
+// Card Section
+
 function handleAddCardSubmit(e) {
   e.preventDefault();
   const newCard = {
@@ -125,7 +128,7 @@ function handleAddCardSubmit(e) {
   renderCard(newCard);
   e.target.reset();
   addFormValidator.disableButton();
-  closeModal(cardAddModal);
+  close(cardAddModal);
 }
 
 cardAddForm.addEventListener("submit", handleAddCardSubmit);
