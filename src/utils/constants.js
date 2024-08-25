@@ -42,31 +42,23 @@ export const cardAddForm = document.forms["add-card-form"];
 
 export const profileEditModal = document.querySelector("#profile-edit-modal");
 export const cardAddModal = document.querySelector("#card-add-modal");
-export const previewModal = document.querySelector("#modal_type-preview");
-export const previewImageElement = previewModal.querySelector(
-  ".card__image_preview"
-);
-export const previewImageLabel = previewModal.querySelector(".modal__caption");
 export const cardsListEl = document.querySelector(".cards__list");
 
 // Buttons and other DOM nodes
 export const closeButtons = document.querySelectorAll(".modal__close");
-closeButtons.forEach((button) => {
-  const modal = button.closest(".modal");
-  button.addEventListener("click", () => closeModal(modal));
-});
 export const profileEditBtn = document.querySelector("#profile-edit-button");
+export const cardAddNewBtn = document.querySelector("#card-add-button");
+
+// Form data
+
 export const profileTitle = document.querySelector(".profile__title");
 export const profileDescription = document.querySelector(
   ".profile__description"
 );
-export const cardAddNewBtn = document.querySelector("#card-add-button");
-export const addCardTitleInput = document.querySelector("#card-input-title");
-export const addCardImageInput = document.querySelector("#card-input-url");
-
-// Form data
-
 export const profileInputTitle = document.querySelector("#profile-input-title");
 export const profileInputDescription = document.querySelector(
   "#profile-input-description"
 );
+
+export const addCardTitleInput = document.querySelector("#card-input-title");
+export const addCardImageInput = document.querySelector("#card-input-url");
