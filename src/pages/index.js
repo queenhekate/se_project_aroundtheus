@@ -65,6 +65,7 @@ popupWithImage.setEventListeners();
 
 function handleImageClick(link, name) {
   popupWithImage.open(link, name);
+  console.log("hello, world");
 }
 
 // POPUP WITH FORM -----
@@ -104,39 +105,14 @@ addCardPopup.setEventListeners();
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
   addCardFormValidator._toggleButtonState();
+  console.log("hello, world");
 });
 
 profileEditBtn.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
   profileInputTitle.value = userData.name;
   profileInputDescription.value = userData.description;
-  editProfilePopup.resetValidation();
+  profileEditFormValidator.resetValidation();
   editProfilePopup.open();
+  console.log("hello, world");
 });
-
-// Profile Section
-
-// profileEditBtn.addEventListener("click", () => {
-//   const info = userInfo.getUserInfo();
-//   profileInputTitle.value = info.name;
-//   profileInputDescription.value = info.description;
-//   editFormValidator.resetValidation();
-//   profileEditModal.open();
-// });
-
-// profileEditBtn.addEventListener("click", () => {
-//   profileInputTitle.value = profileTitle.textContent;
-//   profileInputDescription.value = profileDescription.textContent;
-//   profileEditModal.open();
-//   editFormValidator.resetValidation();
-// });
-
-// const cardTemplate =
-//   document.querySelector("#card-template").content.firstElementChild;
-// const cardTitle = document.querySelector(".card__title");
-// const cardImage = document.querySelector(".card__image");
-
-// closeButtons.forEach((button) => {
-//   const modal = button.closest(".modal");
-//   button.addEventListener("click", () => modal.close());
-// });
