@@ -8,10 +8,10 @@ export default class PopupWithImage extends Popup {
     this._previewDescription = document.querySelector(".modal__caption");
   }
 
-  openModal(link, name) {
+  open({ link, name }) {
     this._previewImage.setAttribute("src", link);
     this._previewImage.setAttribute("alt", name);
     this._previewDescription.textContent = name;
-    super.openModal();
+    super.open();
   }
 }
