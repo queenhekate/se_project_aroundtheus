@@ -16,7 +16,7 @@ import {
   initialCards,
   profileForm,
   cardAddForm,
-  cardsListEl,
+  cardsList,
   profileEditBtn,
   cardAddNewBtn,
   profileInputTitle,
@@ -30,22 +30,27 @@ const section = new Section(
     items: initialCards,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
-      cardsListEl.prepend(cardElement);
+      cardsList.prepend(cardElement);
     },
   },
-  "cards__list"
+  ".cards__list"
 );
 
 section.renderItems();
 
 function createCard(item) {
+  console.log(item);
   const cardElement = new Card(item, "#card-template", handleImageClick);
   return cardElement.getView();
 }
 
 function renderCard(item, method = "prepend") {
+  console.log(item);
   const cardElement = createCard(item);
-  cardsListEl[method](cardElement);
+  console.log(cardElement);
+  console.log(cardsList);
+  cardsList.addItem(cardElement);
+  //cardsListEl.addItem(cardElement);
 }
 
 // USER INFO -----
@@ -81,12 +86,15 @@ const handleProfileFormSubmit = (data) => {
 };
 
 const handleAddCardFormSubmit = (data) => {
+  const cardSelector = "#card-template";
   const cardData = { name: data.title, link: data.link };
-  const cardInstance = new Card(cardData, "#card-template", () => {
+  renderCard(cardData);
+  const cardInstance = new Card(cardData, cardSelector, () => {
     popupWithImage.open(cardData);
   });
-  const cardElement = cardInstance.generateCard();
-  cardSection.addItem(cardElement);
+  const cardElement = cardInstance.getView();
+  cardsList.addItem();
+  console.log("hello");
   addCardPopup.close();
 };
 
@@ -114,5 +122,4 @@ profileEditBtn.addEventListener("click", () => {
   profileInputDescription.value = userData.description;
   profileEditFormValidator.resetValidation();
   editProfilePopup.open();
-  console.log("hello, world");
 });
