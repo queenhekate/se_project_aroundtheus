@@ -30,7 +30,7 @@ const section = new Section(
     items: initialCards,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
-      cardsList.prepend(cardElement);
+      section.addItem(cardElement);
     },
   },
   ".cards__list"
@@ -79,20 +79,13 @@ const addCardFormValidator = new FormValidator(settings, cardAddForm);
 addCardFormValidator.enableValidation();
 
 const handleProfileFormSubmit = (data) => {
-  userInfo.setUserInfo({ name: data.title, description: data.description });
+  userInfo.setUserInfo(data.title, data.description);
   editProfilePopup.close();
 };
 
 const handleAddCardFormSubmit = (data) => {
-  const cardSelector = "#card-template";
   const cardData = { name: data.name, link: data.link };
   renderCard(cardData);
-  const cardInstance = new Card(cardData, cardSelector, () => {
-    popupWithImage.open(cardData);
-  });
-  const cardElement = cardInstance.getView();
-  cardsList.addItem(cardElement);
-  console.log("hello");
   addCardPopup.close();
 };
 
