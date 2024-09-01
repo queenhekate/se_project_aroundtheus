@@ -48,9 +48,7 @@ function renderCard(item, method = "prepend") {
   console.log(item);
   const cardElement = createCard(item);
   console.log(cardElement);
-  console.log(cardsList);
-  cardsList.addItem(cardElement);
-  //cardsListEl.addItem(cardElement);
+  cardsList[method](cardElement);
 }
 
 // USER INFO -----
@@ -81,19 +79,19 @@ const addCardFormValidator = new FormValidator(settings, cardAddForm);
 addCardFormValidator.enableValidation();
 
 const handleProfileFormSubmit = (data) => {
-  userInfo.setUserInfo({ name: data.name, description: data.description });
+  userInfo.setUserInfo({ name: data.title, description: data.description });
   editProfilePopup.close();
 };
 
 const handleAddCardFormSubmit = (data) => {
   const cardSelector = "#card-template";
-  const cardData = { name: data.title, link: data.link };
+  const cardData = { name: data.name, link: data.link };
   renderCard(cardData);
   const cardInstance = new Card(cardData, cardSelector, () => {
     popupWithImage.open(cardData);
   });
   const cardElement = cardInstance.getView();
-  cardsList.addItem();
+  cardsList.addItem(cardElement);
   console.log("hello");
   addCardPopup.close();
 };

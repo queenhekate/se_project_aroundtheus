@@ -51,10 +51,10 @@ export const cardAddNewBtn = document.querySelector("#card-add-button");
 
 // Form data
 
-export const profileTitle = document.querySelector(".profile__title");
-export const profileDescription = document.querySelector(
-  ".profile__description"
-);
+// export const profileTitle = document.querySelector(".profile__title");
+// export const profileDescription = document.querySelector(
+//".profile__description"
+//);
 export const profileInputTitle = document.querySelector("#profile-input-title");
 export const profileInputDescription = document.querySelector(
   "#profile-input-description"

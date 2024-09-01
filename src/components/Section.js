@@ -1,4 +1,4 @@
-import { cardsListEl } from "../utils/constants";
+import { initialCards } from "../utils/constants.js";
 
 export default class Section {
   constructor({ items, renderer }, containerSelector) {
@@ -14,7 +14,7 @@ export default class Section {
     });
   }
 
-  addItem(cardsListEl) {
-    this._container.prepend(cardsListEl);
+  addItem(cardElement) {
+    this._container.prepend(cardElement);
   }
 }
