@@ -79,7 +79,7 @@ const addCardFormValidator = new FormValidator(settings, cardAddForm);
 addCardFormValidator.enableValidation();
 
 const handleProfileFormSubmit = (data) => {
-  userInfo.setUserInfo(data.title, data.description);
+  userInfo.setUserInfo(data.name, data.description);
   editProfilePopup.close();
 };
 
