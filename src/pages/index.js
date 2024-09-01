@@ -103,7 +103,7 @@ addCardPopup.setEventListeners();
 
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
-  addCardFormValidator._toggleButtonState();
+  addCardFormValidator.toggleButtonState();
   console.log("hello, world");
 });
 
