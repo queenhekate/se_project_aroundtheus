@@ -16,7 +16,6 @@ import {
   initialCards,
   profileForm,
   cardAddForm,
-  cardsList,
   profileEditBtn,
   cardAddNewBtn,
   profileInputTitle,
@@ -44,13 +43,10 @@ function createCard(item) {
   return cardElement.getView();
 }
 
-function renderCard(item, method = "prepend") {
-  console.log(item);
+function renderCard(item, method = "addItem") {
   const cardElement = createCard(item);
-  console.log(cardElement);
-  //I tried replacing cardsList with section here and the page wouldn't load.
-  //Please explain in more detail how replacing cardsList with section is preferable.
-  cardsList[method](cardElement);
+  //thank you for the clarification, I really appreciate it =)
+  section[method](cardElement);
 }
 
 // USER INFO -----
@@ -105,7 +101,7 @@ addCardPopup.setEventListeners();
 
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
-  addCardFormValidator.toggleButtonState();
+  addCardFormValidator._toggleButtonState();
   console.log("hello, world");
 });
 

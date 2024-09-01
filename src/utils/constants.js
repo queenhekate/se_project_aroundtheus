@@ -42,7 +42,7 @@ export const cardAddForm = document.forms["add-card-form"];
 
 export const profileEditModal = document.querySelector("#profile-edit-modal");
 export const cardAddModal = document.querySelector("#card-add-modal");
-export const cardsList = document.querySelector(".cards__list");
+//export const cardsList = document.querySelector(".cards__list");
 
 // Buttons and other DOM nodes
 export const closeButtons = document.querySelectorAll(".modal__close");
