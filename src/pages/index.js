@@ -48,6 +48,8 @@ function renderCard(item, method = "prepend") {
   console.log(item);
   const cardElement = createCard(item);
   console.log(cardElement);
+  //I tried replacing cardsList with section here and the page wouldn't load.
+  //Please explain in more detail how replacing cardsList with section is preferable.
   cardsList[method](cardElement);
 }
 
