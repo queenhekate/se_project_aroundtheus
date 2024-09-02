@@ -45,7 +45,6 @@ function createCard(item) {
 
 function renderCard(item, method = "addItem") {
   const cardElement = createCard(item);
-  //thank you for the clarification, I really appreciate it =)
   section[method](cardElement);
 }
 
@@ -77,6 +76,7 @@ const addCardFormValidator = new FormValidator(settings, cardAddForm);
 addCardFormValidator.enableValidation();
 
 const handleProfileFormSubmit = (data) => {
+  console.log(data);
   userInfo.setUserInfo(data.name, data.description);
   editProfilePopup.close();
 };
@@ -101,7 +101,7 @@ addCardPopup.setEventListeners();
 
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
-  addCardFormValidator._toggleButtonState();
+  addCardFormValidator.toggleButtonState();
   console.log("hello, world");
 });
 
