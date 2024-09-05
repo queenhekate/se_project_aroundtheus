@@ -77,7 +77,7 @@ addCardFormValidator.enableValidation();
 
 const handleProfileFormSubmit = (data) => {
   console.log(data);
-  userInfo.setUserInfo(data.name, data.description);
+  userInfo.setUserInfo(data.title, data.description);
   editProfilePopup.close();
 };
 
