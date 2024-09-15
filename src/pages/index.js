@@ -13,6 +13,7 @@ import "../pages/index.css";
 // CONSTANTS IMPORTS -----
 
 import { settings, initialCards } from "../utils/constants.js";
+console.log("Imported initialCards:", initialCards);
 
 //FORMS
 export const profileForm = document.forms["profile-form"];
@@ -31,10 +32,6 @@ export const cardAddNewBtn = document.querySelector("#card-add-button");
 
 // Form data
 
-// export const profileTitle = document.querySelector(".profile__title");
-// export const profileDescription = document.querySelector(
-//".profile__description"
-//);
 export const profileInputTitle = document.querySelector("#profile-input-title");
 export const profileInputDescription = document.querySelector(
   "#profile-input-description"
@@ -72,10 +69,10 @@ const section = new Section(
 
 api
   .getInitialCards()
-  .then((initialCards) => {
+  .then((cards) => {
     // cards is the list of cards that are on the server
-    // console.log(cards);
-    section.renderItems(initialCards);
+    console.log("Fetched initial cards:", cards);
+    section.renderItems(cards);
   })
   .catch((error) => {
     console.log("error fetching cards", error);
