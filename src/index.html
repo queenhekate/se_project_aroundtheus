@@ -49,6 +49,17 @@
       </footer>
     </div>
 
+    <div class="modal" id="delete-confirm-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <form class="modal__form" id="delete-card-form"></form>
+          <button class="modal__button" id="card-close-modal" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
+
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" id="profile-close-modal"></button>
@@ -66,6 +77,7 @@
               minlength="2"
             />
             <span class="modal__error" id="profile-input-title-error"></span>>
+            </label>
             <label class="modal__label">
             <input
               class="modal__form-input"
@@ -78,7 +90,8 @@
               maxlength="200"
             />
             <span class="modal__error" id="profile-input-description-error"></span>>
-          <button class="modal__button" id="profile-submit-btn" type="submit">Save</button>
+            </label>
+            <button class="modal__button" id="profile-submit-btn" type="submit">Save</button>
         </form>
       </div>
     </div>

@@ -5,6 +5,7 @@ import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import "../pages/index.css";
@@ -47,6 +48,8 @@ const section = new Section(
 
 section.renderItems();
 
+// Cards ------
+
 function createCard(item) {
   console.log(item);
   const cardElement = new Card(item, "#card-template", handleImageClick);
@@ -64,6 +67,13 @@ const userInfo = new UserInfo({
   profileNameSelector: ".profile__title",
   profileDescriptionSelector: ".profile__description",
 });
+
+// POPUP CONFIRM DELETE -----
+
+const deleteCardPopup = new PopupWithConfirm({
+  popupSelector: "#delete-card-form",
+});
+deleteCardPopup.setEventListeners();
 
 // POPUP WITH IMAGE -----
 
@@ -108,6 +118,26 @@ const addCardPopup = new PopupWithForm({
   handleFormSubmit: handleAddCardFormSubmit,
 });
 addCardPopup.setEventListeners();
+
+// Delete Card Modal Function
+
+function handleDeleteCard(data, item) {
+  deleteCardPopup.open();
+  deleteCardPopup.handleDeleteConfirm(() => {
+    deleteCardPopup.renderLoading(true);
+    api
+      .deleteCard(data)
+      .then(() => {
+        handleDeleteCard();
+        item.handleDeleteCard();
+        deleteCardPopup.close();
+      })
+      .catch(console.error)
+      .finally(() => {
+        deleteCardPopup.renderLoading(false);
+      });
+  });
+}
 
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
