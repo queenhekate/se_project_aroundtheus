@@ -80,8 +80,8 @@ const section = new Section(
   {
     // items: initialCards,
     renderer: (item) => {
-      const cardElement = createCard(item);
-      section.addItem(cardElement);
+      const card = createCard(item);
+      section.addItem(card);
     },
   },
   ".cards__list"
@@ -106,18 +106,18 @@ api
 
 function createCard(item) {
   console.log(item);
-  const cardElement = new Card(
+  const card = new Card(
     item,
     "#card-template",
     handleImageClick,
     handleDeleteCard
   );
-  return cardElement.getView();
+  return card.getView();
 }
 
 // function renderCard(item, method = "addItem") {
-//   const cardElement = createCard(item);
-//   section[method](cardElement);
+//   const card = createCard(item);
+//   section[method](card);
 // }
 
 // USER INFO -----
@@ -135,19 +135,19 @@ const deleteCardPopup = new PopupWithConfirm({
 });
 deleteCardPopup.setEventListeners();
 
-function handleDeleteCard(cardId, cardElement) {
+function handleDeleteCard(cardId, card) {
   deleteCardPopup.open();
   deleteCardPopup.handleDeleteConfirm(() => {
     deleteCardPopup.renderLoading(true);
     api
       .deleteCard(cardId)
       .then(() => {
-        if (cardElement instanceof HTMLElement) {
-          cardElement.remove();
+        if (card instanceof HTMLElement) {
+          card.remove();
         } else {
           console.error(
-            "handleDeleteCard error: cardElement is not a HTMLElement",
-            cardElement
+            "handleDeleteCard error: card is not a HTMLElement",
+            card
           );
         }
         deleteCardPopup.close();
