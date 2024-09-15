@@ -24,6 +24,14 @@ import {
 
 // API ------
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "d2cb5c42-088c-4f10-972a-3d1426bf2382",
+    "Content-Type": "application/json",
+  },
+});
+
 // Section -----
 
 const section = new Section(
