@@ -44,7 +44,7 @@
 }
 
 .card__like-button {
-  background: transparent url(../images/vector-heart.svg) center no-repeat;
+  background: transparent url(../images/like-inactive.svg) center no-repeat;
   height: 18px;
   width: 21px;
   border: none;
@@ -53,7 +53,7 @@
 }
 
 .card__like-button-active {
-  background: transparent url(../images/Union.svg) center no-repeat;
+  background: transparent url(../images/like-active.svg) center no-repeat;
   height: 18px;
   width: 21px;
   border: none;
