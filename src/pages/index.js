@@ -63,11 +63,24 @@ const api = new Api({
 //     userInfo.setUserAvatar({ avatar: userData.avatar });
 //     userId = userData._id;
 
+// cardSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (item) => {
+//       cardSection.addItem(createCard(item));
+//     },
+//   },
+//   cardListElement
+// );
+// cardSection.renderItems();
+// })
+// .catch(console.error);
+
 const section = new Section(
   {
-    items: initialCards,
-    renderer: (cardData) => {
-      const cardElement = createCard(cardData);
+    // items: initialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
       section.addItem(cardElement);
     },
   },
@@ -82,10 +95,10 @@ const section = new Section(
 
 api
   .getInitialCards()
-  .then((initialCards) => {
+  .then((cards) => {
     // cards is the list of cards that are on the server
-    console.log("Fetched initial cards:", initialCards);
-    section.renderItems(initialCards);
+    console.log("Fetched initial cards:", cards);
+    section.renderItems(cards);
   })
   .catch((error) => {
     console.log("error fetching cards", error);
@@ -129,8 +142,14 @@ function handleDeleteCard(cardId, cardElement) {
     api
       .deleteCard(cardId)
       .then(() => {
-        handleDeleteCard();
-        cardElement.handleDeleteConfirm();
+        if (cardElement instanceof HTMLElement) {
+          cardElement.remove();
+        } else {
+          console.error(
+            "handleDeleteCard error: cardElement is not a HTMLElement",
+            cardElement
+          );
+        }
         deleteCardPopup.close();
       })
       .catch(console.error)
