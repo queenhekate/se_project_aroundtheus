@@ -12,16 +12,36 @@ import "../pages/index.css";
 
 // CONSTANTS IMPORTS -----
 
-import {
-  settings,
-  initialCards,
-  profileForm,
-  cardAddForm,
-  profileEditBtn,
-  cardAddNewBtn,
-  profileInputTitle,
-  profileInputDescription,
-} from "../utils/constants.js";
+import { settings, initialCards } from "../utils/constants.js";
+
+//FORMS
+export const profileForm = document.forms["profile-form"];
+export const cardAddForm = document.forms["add-card-form"];
+
+// Wrappers
+
+export const profileEditModal = document.querySelector("#profile-edit-modal");
+export const cardAddModal = document.querySelector("#card-add-modal");
+//export const cardsList = document.querySelector(".cards__list");
+
+// Buttons and other DOM nodes
+export const closeButtons = document.querySelectorAll(".modal__close");
+export const profileEditBtn = document.querySelector("#profile-edit-button");
+export const cardAddNewBtn = document.querySelector("#card-add-button");
+
+// Form data
+
+// export const profileTitle = document.querySelector(".profile__title");
+// export const profileDescription = document.querySelector(
+//".profile__description"
+//);
+export const profileInputTitle = document.querySelector("#profile-input-title");
+export const profileInputDescription = document.querySelector(
+  "#profile-input-description"
+);
+
+export const addCardTitleInput = document.querySelector("#card-input-title");
+export const addCardImageInput = document.querySelector("#card-input-url");
 
 // API ------
 
@@ -37,7 +57,7 @@ const api = new Api({
 
 const section = new Section(
   {
-    items: initialCards,
+    // items: initialCards,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
       section.addItem(cardElement);
@@ -46,9 +66,20 @@ const section = new Section(
   ".cards__list"
 );
 
-section.renderItems();
+// section.renderItems();
 
 // Cards ------
+
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    // cards is the list of cards that are on the server
+    // console.log(cards);
+    section.renderItems(initialCards);
+  })
+  .catch((error) => {
+    console.log("error fetching cards", error);
+  });
 
 function createCard(item) {
   console.log(item);
