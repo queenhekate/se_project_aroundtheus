@@ -134,12 +134,6 @@ const handleProfileFormSubmit = (data) => {
   editProfilePopup.close();
 };
 
-const handleAddCardFormSubmit = (data) => {
-  const cardData = { name: data.name, link: data.link };
-  renderCard(cardData);
-  addCardPopup.close();
-};
-
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
   handleFormSubmit: handleProfileFormSubmit,
@@ -151,6 +145,28 @@ const addCardPopup = new PopupWithForm({
   handleFormSubmit: handleAddCardFormSubmit,
 });
 addCardPopup.setEventListeners();
+
+// const handleAddCardFormSubmit = (data) => {
+//   const cardData = { name: data.name, link: data.link };
+//   renderCard(cardData);
+//   addCardPopup.close();
+// };
+
+function handleAddCardFormSubmit(data) {
+  addCardPopup.renderLoading(true);
+  api
+    .addCard({ name: data.name, link: data.link })
+    .then((cardData) => {
+      cardSection.addItem(createCard(cardData));
+      addCardForm.reset();
+      newCardPopup.close();
+      addCardFormValidator.resetForm();
+    })
+    .catch(console.error)
+    .finally(() => {
+      newCardPopup.renderLoading(false);
+    });
+}
 
 // Delete Card Modal Function
 
