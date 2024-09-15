@@ -69,9 +69,9 @@ const section = new Section(
 
 api
   .getInitialCards()
-  .then((cards) => {
+  .then((initialCards) => {
     // cards is the list of cards that are on the server
-    console.log("Fetched initial cards:", cards);
+    console.log("Fetched initial cards:", initialCards);
     section.renderItems(cards);
   })
   .catch((error) => {

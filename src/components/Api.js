@@ -25,16 +25,16 @@ export default class API {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then(this._handleResponse)
-    .then((data) => {
-      console.log('Response data:', data);  // Debug line
-      return data;
     })
-    .catch((error) => {
-      console.error('Error in fetch:', error);  // Debug line
-      throw error;  // Optional: re-throw to propagate error
-    });
-  }
+      .then(this._handleResponse)
+      .then((data) => {
+        console.log("Response data:", data); // Debug line
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error in fetch:", error); // Debug line
+        throw error; // Optional: re-throw to propagate error
+      });
   }
 
   //   updateProfileInfo({ title, description }) {
