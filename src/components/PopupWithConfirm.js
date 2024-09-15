@@ -5,7 +5,7 @@ export default class PopupWithConfirm extends Popup {
     super({ popupSelector });
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._submitButton = this._popupElement.querySelector(".modal__button");
-    // this._submitButtonText = this._submitButton.textContent("");
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   handleDeleteConfirm(callback) {

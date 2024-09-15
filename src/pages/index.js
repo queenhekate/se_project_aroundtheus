@@ -52,7 +52,12 @@ section.renderItems();
 
 function createCard(item) {
   console.log(item);
-  const cardElement = new Card(item, "#card-template", handleImageClick);
+  const cardElement = new Card(
+    item,
+    "#card-template",
+    handleImageClick,
+    handleDeleteCard
+  );
   return cardElement.getView();
 }
 
@@ -71,7 +76,7 @@ const userInfo = new UserInfo({
 // POPUP CONFIRM DELETE -----
 
 const deleteCardPopup = new PopupWithConfirm({
-  popupSelector: "#delete-card-form",
+  popupSelector: "#delete-confirm-modal",
 });
 deleteCardPopup.setEventListeners();
 
@@ -121,15 +126,15 @@ addCardPopup.setEventListeners();
 
 // Delete Card Modal Function
 
-function handleDeleteCard(data, item) {
+function handleDeleteCard(cardId, card) {
   deleteCardPopup.open();
   deleteCardPopup.handleDeleteConfirm(() => {
     deleteCardPopup.renderLoading(true);
     api
-      .deleteCard(data)
+      .deleteCard(cardId)
       .then(() => {
         handleDeleteCard();
-        item.handleDeleteCard();
+        card.handleDeleteCard();
         deleteCardPopup.close();
       })
       .catch(console.error)
