@@ -52,9 +52,20 @@ const api = new Api({
 
 // Section -----
 
+// let section;
+// api
+//   .getAppData()
+//   .then(([userData, initialCards]) => {
+//     userInfo.setUserInfo({
+//       name: userData.name,
+//       description: userData.description,
+//     });
+//     userInfo.setUserAvatar({ avatar: userData.avatar });
+//     userId = userData._id;
+
 const section = new Section(
   {
-    // items: initialCards,
+    items: initialCards,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
       section.addItem(cardElement);
@@ -62,10 +73,12 @@ const section = new Section(
   },
   ".cards__list"
 );
+// })
+// .catch(console.error);
 
 // section.renderItems();
 
-// Cards ------
+// INITIAL CARDS ------
 
 api
   .getInitialCards()
@@ -89,26 +102,45 @@ function createCard(item) {
   return cardElement.getView();
 }
 
-function renderCard(item, method = "addItem") {
-  const cardElement = createCard(item);
-  section[method](cardElement);
-}
+// function renderCard(item, method = "addItem") {
+//   const cardElement = createCard(item);
+//   section[method](cardElement);
+// }
 
 // USER INFO -----
 
 const userInfo = new UserInfo({
   profileNameSelector: ".profile__title",
   profileDescriptionSelector: ".profile__description",
+  profileAvatarSelector: ".profile__image",
 });
 
-// POPUP CONFIRM DELETE -----
+// DELETE MODAL AND METHODS -----
 
 const deleteCardPopup = new PopupWithConfirm({
   popupSelector: "#delete-confirm-modal",
 });
 deleteCardPopup.setEventListeners();
 
-// POPUP WITH IMAGE -----
+function handleDeleteCard(cardId, cardElement) {
+  deleteCardPopup.open();
+  deleteCardPopup.handleDeleteConfirm(() => {
+    deleteCardPopup.renderLoading(true);
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        handleDeleteCard();
+        cardElement.handleDeleteConfirm();
+        deleteCardPopup.close();
+      })
+      .catch(console.error)
+      .finally(() => {
+        deleteCardPopup.renderLoading(false);
+      });
+  });
+}
+
+// IMAGE MODAL AND METHODS -----
 
 const popupWithImage = new PopupWithImage({
   popupSelector: "#modal_type-preview",
@@ -121,12 +153,7 @@ function handleImageClick(link, name) {
   console.log("hello, world");
 }
 
-// POPUP WITH FORM -----
-const profileEditFormValidator = new FormValidator(settings, profileForm);
-profileEditFormValidator.enableValidation();
-
-const addCardFormValidator = new FormValidator(settings, cardAddForm);
-addCardFormValidator.enableValidation();
+// EDIT PROFILE MODAL AND METHODS
 
 const handleProfileFormSubmit = (data) => {
   console.log(data);
@@ -139,6 +166,8 @@ const editProfilePopup = new PopupWithForm({
   handleFormSubmit: handleProfileFormSubmit,
 });
 editProfilePopup.setEventListeners();
+
+// ADD CARD MODAL AND METHODS -----
 
 const addCardPopup = new PopupWithForm({
   popupSelector: "#card-add-modal",
@@ -157,35 +186,15 @@ function handleAddCardFormSubmit(data) {
   api
     .addCard({ name: data.name, link: data.link })
     .then((cardData) => {
-      cardSection.addItem(createCard(cardData));
-      addCardForm.reset();
-      newCardPopup.close();
-      addCardFormValidator.resetForm();
+      section.addItem(createCard(cardData));
+      cardAddForm.reset();
+      addCardPopup.close();
+      addCardFormValidator.resetValidation();
     })
     .catch(console.error)
     .finally(() => {
-      newCardPopup.renderLoading(false);
+      addCardPopup.renderLoading(false);
     });
-}
-
-// Delete Card Modal Function
-
-function handleDeleteCard(cardId, card) {
-  deleteCardPopup.open();
-  deleteCardPopup.handleDeleteConfirm(() => {
-    deleteCardPopup.renderLoading(true);
-    api
-      .deleteCard(cardId)
-      .then(() => {
-        handleDeleteCard();
-        card.handleDeleteCard();
-        deleteCardPopup.close();
-      })
-      .catch(console.error)
-      .finally(() => {
-        deleteCardPopup.renderLoading(false);
-      });
-  });
 }
 
 cardAddNewBtn.addEventListener("click", () => {
@@ -201,3 +210,11 @@ profileEditBtn.addEventListener("click", () => {
   profileEditFormValidator.resetValidation();
   editProfilePopup.open();
 });
+
+// FORM VALIDATION -----
+
+const profileEditFormValidator = new FormValidator(settings, profileForm);
+profileEditFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(settings, cardAddForm);
+addCardFormValidator.enableValidation();
