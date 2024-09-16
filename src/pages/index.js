@@ -104,15 +104,15 @@ api
     console.log("error fetching cards", error);
   });
 
-function createCard(item) {
-  console.log(item);
-  const card = new Card(
-    item,
+function createCard(items) {
+  console.log(items);
+  const cardElement = new Card(
+    items,
     "#card-template",
     handleImageClick,
     handleDeleteCard
   );
-  return card.getView();
+  return cardElement.getView();
 }
 
 // function renderCard(item, method = "addItem") {
@@ -135,21 +135,14 @@ const deleteCardPopup = new PopupWithConfirm({
 });
 deleteCardPopup.setEventListeners();
 
-function handleDeleteCard(cardId, card) {
+function handleDeleteCard(cardId, cardElement) {
   deleteCardPopup.open();
   deleteCardPopup.handleDeleteConfirm(() => {
     deleteCardPopup.renderLoading(true);
     api
       .deleteCard(cardId)
       .then(() => {
-        if (card instanceof HTMLElement) {
-          card.remove();
-        } else {
-          console.error(
-            "handleDeleteCard error: card is not a HTMLElement",
-            card
-          );
-        }
+        cardElement.remove();
         deleteCardPopup.close();
       })
       .catch(console.error)

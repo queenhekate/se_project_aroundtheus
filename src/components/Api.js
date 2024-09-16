@@ -63,7 +63,11 @@ export default class API {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._handleResponse);
+    })
+      .then(this._handleResponse)
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   likeCard(cardId) {
