@@ -130,15 +130,24 @@ const userInfo = new UserInfo({
   profileAvatarSelector: ".profile__image",
 });
 
+// api
+//   .getUserInfo(userInfo._title, userInfo._description)
+//   .then((res) => {
+//     userInfo.setUserInfo({ title: res.name, description: res.about });
+//     userInfo.setAvatar(res.avatar);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
+
 api
-  .getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo({
-      name: userData.title,
-      description: userData.description,
+  .getUserInfo(userInfo._name, userInfo._description)
+  .then((res) => {
+    userInfo.updateProfileInfo({
+      title: res.name,
+      about: res.description,
     });
-    userInfo.changeAvatar({ avatar: userData.avatar });
-    userId = userData._id;
+    userInfo.changeAvatar(res.avatar);
   })
   .catch(console.error);
 
