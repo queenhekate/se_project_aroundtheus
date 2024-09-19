@@ -37,16 +37,16 @@ export default class API {
       });
   }
 
-  //   updateProfileInfo({ title, description }) {
-  //     return fetch(`${this._baseUrl}/users/me`, {
-  //       method: "PATCH",
-  //       headers: this._headers,
-  //       body: JSON.stringify({
-  //         name: title,
-  //         about: description,
-  //       }),
-  //     }).then(this._handleResponse);
-  //   }
+  updateProfileInfo({ title, description }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: title,
+        about: description,
+      }),
+    }).then(this._handleResponse);
+  }
 
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {

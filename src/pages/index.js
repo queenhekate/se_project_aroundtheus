@@ -57,22 +57,24 @@ const api = new Api({
 //   .getAppData()
 //   .then(([userData, initialCards]) => {
 //     userInfo.setUserInfo({
-//       name: userData.name,
+//       name: userData.title,
 //       description: userData.description,
 //     });
 //     userInfo.setUserAvatar({ avatar: userData.avatar });
 //     userId = userData._id;
+//   })
+//   .catch(console.error);
 
-// cardSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: (item) => {
-//       cardSection.addItem(createCard(item));
+//   cardSection = new Section(
+//     {
+//       items: initialCards,
+//       renderer: (item) => {
+//         cardSection.addItem(createCard(item));
+//       },
 //     },
-//   },
-//   cardListElement
-// );
-// cardSection.renderItems();
+//     cardListElement
+//   );
+//   cardSection.renderItems();
 // })
 // .catch(console.error);
 
@@ -127,6 +129,18 @@ const userInfo = new UserInfo({
   profileDescriptionSelector: ".profile__description",
   profileAvatarSelector: ".profile__image",
 });
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo({
+      name: userData.title,
+      description: userData.description,
+    });
+    userInfo.changeAvatar({ avatar: userData.avatar });
+    userId = userData._id;
+  })
+  .catch(console.error);
 
 // DELETE MODAL AND METHODS -----
 
