@@ -18,6 +18,7 @@ console.log("Imported initialCards:", initialCards);
 //FORMS
 export const profileForm = document.forms["profile-form"];
 export const cardAddForm = document.forms["add-card-form"];
+export const avatarForm = document.forms["edit-avatar-form"];
 
 // Wrappers
 
@@ -26,12 +27,14 @@ export const cardAddModal = document.querySelector("#card-add-modal");
 //export const cardsList = document.querySelector(".cards__list");
 
 // Buttons and other DOM nodes
-export const closeButtons = document.querySelectorAll(".modal__close");
-export const profileEditBtn = document.querySelector("#profile-edit-button");
-export const cardAddNewBtn = document.querySelector("#card-add-button");
+const closeButtons = document.querySelectorAll(".modal__close");
+const profileEditBtn = document.querySelector("#profile-edit-button");
+const cardAddNewBtn = document.querySelector("#card-add-button");
+const editAvatarButton = document.querySelector("#edit-avatar-icon");
 
 // Form data
 
+export const avatarUrlInput = document.querySelector("#avatar-input-url");
 export const profileInputTitle = document.querySelector("#profile-input-title");
 export const profileInputDescription = document.querySelector(
   "#profile-input-description"
@@ -52,32 +55,6 @@ const api = new Api({
 
 // Section -----
 
-// let section;
-// api
-//   .getAppData()
-//   .then(([userData, initialCards]) => {
-//     userInfo.setUserInfo({
-//       name: userData.title,
-//       description: userData.description,
-//     });
-//     userInfo.setUserAvatar({ avatar: userData.avatar });
-//     userId = userData._id;
-//   })
-//   .catch(console.error);
-
-//   cardSection = new Section(
-//     {
-//       items: initialCards,
-//       renderer: (item) => {
-//         cardSection.addItem(createCard(item));
-//       },
-//     },
-//     cardListElement
-//   );
-//   cardSection.renderItems();
-// })
-// .catch(console.error);
-
 const section = new Section(
   {
     // items: initialCards,
@@ -88,10 +65,6 @@ const section = new Section(
   },
   ".cards__list"
 );
-// })
-// .catch(console.error);
-
-// section.renderItems();
 
 // INITIAL CARDS ------
 
@@ -112,15 +85,11 @@ function createCard(items) {
     items,
     "#card-template",
     handleImageClick,
-    handleDeleteCard
+    handleDeleteCard,
+    likeCard
   );
   return cardElement.getView();
 }
-
-// function renderCard(item, method = "addItem") {
-//   const card = createCard(item);
-//   section[method](card);
-// }
 
 // USER INFO -----
 
@@ -130,26 +99,40 @@ const userInfo = new UserInfo({
   profileAvatarSelector: ".profile__image",
 });
 
-// api
-//   .getUserInfo(userInfo._title, userInfo._description)
-//   .then((res) => {
-//     userInfo.setUserInfo({ title: res.name, description: res.about });
-//     userInfo.setAvatar(res.avatar);
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
-
 api
-  .getUserInfo(userInfo._name, userInfo._description)
-  .then((res) => {
-    userInfo.updateProfileInfo({
-      title: res.name,
-      about: res.description,
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo({
+      name: userData.name,
+      description: userData.description,
+      avatar: userData.avatar,
     });
-    userInfo.changeAvatar(res.avatar);
   })
-  .catch(console.error);
+  .catch((err) => console.error(err));
+
+// LIKE AND UNLIKE -----
+
+function likeCard(cardElement) {
+  if (!cardElement.isLiked) {
+    api
+      .isLiked(card._id)
+      .then((res) => {
+        cardElement.handleLikeIcon(res.isLiked);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .unlikeCard(card._id)
+      .then((res) => {
+        cardElement.handleLikeIcon(res.isLiked);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+}
 
 // DELETE MODAL AND METHODS -----
 
@@ -189,7 +172,6 @@ function handleImageClick(link, name) {
 }
 
 // EDIT PROFILE MODAL AND METHODS
-
 const handleProfileFormSubmit = (data) => {
   console.log(data);
   userInfo.setUserInfo(data.title, data.description);
@@ -201,6 +183,33 @@ const editProfilePopup = new PopupWithForm({
   handleFormSubmit: handleProfileFormSubmit,
 });
 editProfilePopup.setEventListeners();
+
+profileEditBtn.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
+  profileInputTitle.value = userData.name;
+  profileInputDescription.value = userData.description;
+  profileEditFormValidator.resetValidation();
+  editProfilePopup.open();
+});
+
+// AVATAR MODAL AND METHODS -----
+const handleAvatarFormSubmit = (data) => {
+  console.log(data);
+  userInfo.setUserInfo(data.avatar);
+  editAvatarPopup.close();
+};
+
+const editAvatarPopup = new PopupWithForm({
+  popupSelector: "#edit-avatar-modal",
+  handleFormSubmit: handleAvatarFormSubmit,
+});
+editAvatarPopup.setEventListeners();
+
+editAvatarButton.addEventListener("click", () => {
+  avatarUrlInput.value = userData.avatar;
+  avatarFormValidator.resetValidation();
+  editAvatarPopup.open();
+});
 
 // ADD CARD MODAL AND METHODS -----
 
@@ -238,18 +247,13 @@ cardAddNewBtn.addEventListener("click", () => {
   console.log("hello, world");
 });
 
-profileEditBtn.addEventListener("click", () => {
-  const userData = userInfo.getUserInfo();
-  profileInputTitle.value = userData.name;
-  profileInputDescription.value = userData.description;
-  profileEditFormValidator.resetValidation();
-  editProfilePopup.open();
-});
-
 // FORM VALIDATION -----
 
 const profileEditFormValidator = new FormValidator(settings, profileForm);
 profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(settings, cardAddForm);
+addCardFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(settings, avatarForm);
 addCardFormValidator.enableValidation();
