@@ -9,6 +9,8 @@ export default class FormValidator {
     this._errorClass = settings.errorClass;
     this._buttonElement = formEl.querySelector(this._submitButtonSelector);
     this._inputList = Array.from(formEl.querySelectorAll(this._inputSelector));
+    this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
+    this._submitBtn = this._form.querySelector(this._submitButtonSelector);
   }
 
   disableButton() {
@@ -60,8 +62,6 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
-    this._submitBtn = this._form.querySelector(this._submitButtonSelector);
     this.toggleButtonState();
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {

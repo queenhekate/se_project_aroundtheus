@@ -72,7 +72,6 @@ api
   .getInitialCards()
   .then((cards) => {
     // cards is the list of cards that are on the server
-    console.log("Fetched initial cards:", cards);
     section.renderItems(cards);
   })
   .catch((error) => {
@@ -80,7 +79,6 @@ api
   });
 
 function createCard(items) {
-  console.log(items);
   const cardElement = new Card(
     items,
     "#card-template",
@@ -115,18 +113,18 @@ api
 function handleLikeButton(cardElement) {
   if (!cardElement.isLiked) {
     api
-      .isLiked(cardData._id)
-      .then((res) => {
-        cardElement.handleLikeIcon(res.isLiked);
+      .likeCard(cardElement._id)
+      .then(() => {
+        cardElement.isLiked = true;
       })
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
-      .unlikeCard(cardData._id)
-      .then((res) => {
-        cardElement.handleLikeIcon(res.isLiked);
+      .unlikeCard(cardElement._id)
+      .then(() => {
+        cardElement.isLiked = false;
       })
       .catch((err) => {
         console.error(err);
@@ -205,7 +203,7 @@ const editAvatarPopup = new PopupWithForm({
 editAvatarPopup.setEventListeners();
 
 editAvatarButton.addEventListener("click", () => {
-  avatarFormValidator.toggleButtonState();
+  // avatarFormValidator.toggleButtonState();
   avatarUrlInput.value = userInfo.getUserInfo().avatar;
   editAvatarPopup.open();
 });
