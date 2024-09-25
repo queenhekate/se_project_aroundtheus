@@ -99,7 +99,6 @@ const userInfo = new UserInfo({
 api
   .getUserInfo()
   .then((userData) => {
-    console.log(userData);
     userInfo.setUserInfo({
       title: userData.title,
       description: userData.description,
@@ -171,11 +170,14 @@ function handleImageClick(link, name) {
 
 // EDIT PROFILE MODAL AND METHODS
 const handleProfileFormSubmit = (data) => {
-  api.updateProfileInfo(data);
-  console
-    .log(data)
-    .then(() => {
-      userInfo.setUserInfo(data);
+  api
+    .updateProfileInfo(data)
+    .then((res) => {
+      userInfo.setUserInfo({
+        title: res.name,
+        description: res.about,
+        avatar: res.avatar,
+      });
       editProfilePopup.close();
     })
     .catch(console.error);
@@ -200,7 +202,7 @@ const handleAvatarFormSubmit = (data) => {
   api
     .updateProfileAvatar(data.link)
     .then(() => {
-      userInfo.changeAvatar(data.link); // you have to use the changeAvatar method and you receive an object with link inside it
+      userInfo.changeAvatar(data.link);
       editAvatarPopup.close();
     })
     .catch(console.error);

@@ -43,6 +43,7 @@ export default class API {
       body: JSON.stringify({
         name: data.title,
         about: data.description,
+        avatar: data.avatar,
       }),
     }).then(this._handleResponse);
   }
