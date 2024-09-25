@@ -205,6 +205,7 @@ const editAvatarPopup = new PopupWithForm({
 editAvatarPopup.setEventListeners();
 
 editAvatarButton.addEventListener("click", () => {
+  avatarFormValidator.toggleButtonState();
   avatarUrlInput.value = userInfo.getUserInfo().avatar;
   editAvatarPopup.open();
 });
