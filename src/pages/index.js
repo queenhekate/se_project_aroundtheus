@@ -171,10 +171,10 @@ function handleImageClick(link, name) {
 
 // EDIT PROFILE MODAL AND METHODS
 const handleProfileFormSubmit = (data) => {
-  console.log(data);
-  api
-    .updateProfileInfo(data)
-    .then((res) => {
+  api.updateProfileInfo(data);
+  console
+    .log(data)
+    .then(() => {
       userInfo.setUserInfo(data);
       editProfilePopup.close();
     })
@@ -213,8 +213,8 @@ const editAvatarPopup = new PopupWithForm({
 editAvatarPopup.setEventListeners();
 
 editAvatarButton.addEventListener("click", () => {
-  // avatarFormValidator.toggleButtonState();
   avatarUrlInput.value = userInfo.getUserInfo().avatar;
+  avatarFormValidator.resetValidation();
   editAvatarPopup.open();
 });
 
@@ -263,4 +263,4 @@ const addCardFormValidator = new FormValidator(settings, cardAddForm);
 addCardFormValidator.enableValidation();
 
 const avatarFormValidator = new FormValidator(settings, avatarForm);
-addCardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
