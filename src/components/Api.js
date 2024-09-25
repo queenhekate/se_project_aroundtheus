@@ -28,7 +28,6 @@ export default class API {
     })
       .then(this._handleResponse)
       .then((data) => {
-        console.log("Response data:", data); // Debug line
         return data;
       })
       .catch((error) => {
@@ -42,8 +41,8 @@ export default class API {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: title,
-        about: description,
+        title,
+        description,
       }),
     }).then(this._handleResponse);
   }

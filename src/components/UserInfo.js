@@ -8,14 +8,14 @@ export default class UserInfo {
   getUserInfo() {
     return {
       title: this._title.textContent,
-      description: this._description.textContent,
+      description: this._description.innerText,
       avatar: this._avatar.src,
     };
   }
 
   setUserInfo({ title, description, avatar }) {
     if (title) this._title.textContent = title;
-    if (description) this._description.textContent = description;
+    if (description) this._description.innerText = description;
     if (avatar) this.changeAvatar(avatar);
   }
 

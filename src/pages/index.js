@@ -13,7 +13,6 @@ import "../pages/index.css";
 // CONSTANTS IMPORTS -----
 
 import { settings, initialCards } from "../utils/constants.js";
-console.log("Imported initialCards:", initialCards);
 
 //FORMS
 export const profileForm = document.forms["profile-form"];
@@ -101,7 +100,7 @@ api
   .getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo({
-      name: userData.name,
+      title: userData.title,
       description: userData.description,
       avatar: userData.avatar,
     });
@@ -171,9 +170,13 @@ function handleImageClick(link, name) {
 
 // EDIT PROFILE MODAL AND METHODS
 const handleProfileFormSubmit = (data) => {
-  console.log(data);
-  userInfo.setUserInfo(data.title, data.description);
-  editProfilePopup.close();
+  api
+    .updateProfileInfo({ title, description })
+    .then(() => {
+      userInfo.setUserInfo(data.title, data.description);
+      editProfilePopup.close();
+    })
+    .catch(console.error);
 };
 
 const editProfilePopup = new PopupWithForm({
@@ -184,7 +187,7 @@ editProfilePopup.setEventListeners();
 
 profileEditBtn.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
-  profileInputTitle.value = userData.name;
+  profileInputTitle.value = userData.title;
   profileInputDescription.value = userData.description;
   profileEditFormValidator.resetValidation();
   editProfilePopup.open();
@@ -192,10 +195,15 @@ profileEditBtn.addEventListener("click", () => {
 
 // AVATAR MODAL AND METHODS -----
 const handleAvatarFormSubmit = (data) => {
-  console.log(data);
-  userInfo.changeAvatar(data.link); // you have to use the changeAvatar method and you receive an object with link inside it
-  editAvatarPopup.close();
+  api
+    .updateProfileAvatar(data.link)
+    .then(() => {
+      userInfo.changeAvatar(data.link); // you have to use the changeAvatar method and you receive an object with link inside it
+      editAvatarPopup.close();
+    })
+    .catch(console.error);
 };
+
 const editAvatarPopup = new PopupWithForm({
   popupSelector: "#edit-avatar-modal",
   handleFormSubmit: handleAvatarFormSubmit,
