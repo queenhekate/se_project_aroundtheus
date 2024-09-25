@@ -86,7 +86,7 @@ function createCard(items) {
     "#card-template",
     handleImageClick,
     handleDeleteCard,
-    likeCard
+    handleLikeButton
   );
   return cardElement.getView();
 }
@@ -94,9 +94,9 @@ function createCard(items) {
 // USER INFO -----
 
 const userInfo = new UserInfo({
-  profileNameSelector: ".profile__title",
-  profileDescriptionSelector: ".profile__description",
-  profileAvatarSelector: ".profile__image",
+  title: ".profile__title",
+  description: ".profile__description",
+  avatar: ".profile__image",
 });
 
 api
@@ -112,10 +112,10 @@ api
 
 // LIKE AND UNLIKE -----
 
-function likeCard(cardElement) {
+function handleLikeButton(cardElement) {
   if (!cardElement.isLiked) {
     api
-      .isLiked(card._id)
+      .isLiked(cardData._id)
       .then((res) => {
         cardElement.handleLikeIcon(res.isLiked);
       })
@@ -124,7 +124,7 @@ function likeCard(cardElement) {
       });
   } else {
     api
-      .unlikeCard(card._id)
+      .unlikeCard(cardData._id)
       .then((res) => {
         cardElement.handleLikeIcon(res.isLiked);
       })
@@ -195,10 +195,9 @@ profileEditBtn.addEventListener("click", () => {
 // AVATAR MODAL AND METHODS -----
 const handleAvatarFormSubmit = (data) => {
   console.log(data);
-  userInfo.setUserInfo(data.avatar);
+  userInfo.changeAvatar(data.link); // you have to use the changeAvatar method and you receive an object with link inside it
   editAvatarPopup.close();
 };
-
 const editAvatarPopup = new PopupWithForm({
   popupSelector: "#edit-avatar-modal",
   handleFormSubmit: handleAvatarFormSubmit,
@@ -206,8 +205,7 @@ const editAvatarPopup = new PopupWithForm({
 editAvatarPopup.setEventListeners();
 
 editAvatarButton.addEventListener("click", () => {
-  avatarUrlInput.value = userData.avatar;
-  avatarFormValidator.resetValidation();
+  avatarUrlInput.value = userInfo.getUserInfo().avatar;
   editAvatarPopup.open();
 });
 
