@@ -128,7 +128,7 @@
 
   .profile__description {
     font-size: 16px;
-    text-align: left;
+    text-align: center;
   }
 
   .profile__edit-button {
@@ -154,6 +154,8 @@
     align-content: center;
     justify-content: center;
     gap: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .profile__info {
@@ -173,11 +175,12 @@
 
   .profile__image {
     margin: 0 auto;
+    justify-self: center;
   }
 
   .profile__description {
-    width: 100%;
-    text-align: center;
+    justify-self: center;
+    max-width: 196px;
   }
 
   .profile__add-button {

@@ -98,14 +98,15 @@ const userInfo = new UserInfo({
 
 api
   .getUserInfo()
-  .then((userData) => {
+  .then((data) => {
+    console.log(data);
     userInfo.setUserInfo({
-      title: userData.title,
-      description: userData.description,
-      avatar: userData.avatar,
+      title: data.name,
+      description: data.about,
+      avatar: data.avatar,
     });
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error("Error fetching user data:", err));
 
 // LIKE AND UNLIKE -----
 
