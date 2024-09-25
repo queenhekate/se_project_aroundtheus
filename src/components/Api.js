@@ -36,13 +36,13 @@ export default class API {
       });
   }
 
-  updateProfileInfo({ title, description }) {
+  updateProfileInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        title,
-        description,
+        name: data.title,
+        about: data.description,
       }),
     }).then(this._handleResponse);
   }

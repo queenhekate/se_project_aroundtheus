@@ -99,6 +99,7 @@ const userInfo = new UserInfo({
 api
   .getUserInfo()
   .then((userData) => {
+    console.log(userData);
     userInfo.setUserInfo({
       title: userData.title,
       description: userData.description,
@@ -170,10 +171,11 @@ function handleImageClick(link, name) {
 
 // EDIT PROFILE MODAL AND METHODS
 const handleProfileFormSubmit = (data) => {
+  console.log(data);
   api
-    .updateProfileInfo({ title, description })
-    .then(() => {
-      userInfo.setUserInfo(data.title, data.description);
+    .updateProfileInfo(data)
+    .then((res) => {
+      userInfo.setUserInfo(data);
       editProfilePopup.close();
     })
     .catch(console.error);
