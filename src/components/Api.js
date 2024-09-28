@@ -12,28 +12,24 @@ export default class API {
     }
   }
 
-  _request(url, options) {
-    return fetch(url, options).then(this._handleResponse);
+  _request(endpoint, options = {}) {
+    const finalOptions = {
+      // add the headers
+      headers: this._headers,
+      // spread the other options if provided
+      ...options,
+    };
+    // add the endpoint to the base url
+    const url = `${this._baseUrl}${endpoint}`;
+    return fetch(url, finalOptions).then(this._handleResponse);
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-    }).then(this._handleResponse);
+    return this._request("/users/me");
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
-    })
-      .then(this._handleResponse)
-      .then((data) => {
-        return data;
-      })
-      .catch((error) => {
-        console.error("Error in fetch:", error); // Debug line
-        throw error; // Optional: re-throw to propagate error
-      });
+    return this._request("/cards");
   }
 
   updateProfileInfo(data) {
@@ -63,11 +59,7 @@ export default class API {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._handleResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._handleResponse);
   }
 
   likeCard(cardId) {
@@ -98,17 +90,3 @@ export default class API {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 }
-
-//    User Routes
-
-//   GET /users/me – Get the current user’s info
-//   PATCH /users/me – Update your profile information
-//   PATCH /users/me/avatar – Update avatar
-
-//   Card routes
-
-//   GET /cards – Get all cards
-//   POST /cards – Create a card
-//   DELETE /cards/:cardId – Delete a card
-//   PUT /cards/:cardId/likes – Like a card
-//   DELETE /cards/:cardId/likes – Dislike a card

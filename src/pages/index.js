@@ -99,14 +99,13 @@ const userInfo = new UserInfo({
 api
   .getUserInfo()
   .then((data) => {
-    console.log(data);
     userInfo.setUserInfo({
       title: data.name,
       description: data.about,
       avatar: data.avatar,
     });
   })
-  .catch((err) => console.error("Error fetching user data:", err));
+  .catch(console.error);
 
 // LIKE AND UNLIKE -----
 
@@ -117,19 +116,35 @@ function handleLikeButton(cardElement) {
       .then(() => {
         cardElement.isLiked = true;
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   } else {
     api
       .unlikeCard(cardElement._id)
       .then(() => {
         cardElement.isLiked = false;
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   }
+}
+
+// UNIVERSAL FORM FUNCTIONS
+
+// You can make a universal function that accepts a request, popup instance and optional loading text
+function handleSubmit(request, popupInstance, loadingText = "Saving...") {
+  // here we change the button text
+  popupInstance.renderLoading(true, loadingText);
+  request()
+    .then(() => {
+      // We need to close only in `then`
+      popupInstance.close();
+    })
+    // we need to catch possible errors
+    // console.error is used to handle errors if you don’t have any other ways for that
+    .catch(console.error)
+    // in `finally` we need to return the initial button text back in any case
+    .finally(() => {
+      popupInstance.renderLoading(false);
+    });
 }
 
 // DELETE MODAL AND METHODS -----
@@ -170,21 +185,16 @@ function handleImageClick(link, name) {
 
 // EDIT PROFILE MODAL AND METHODS
 const handleProfileFormSubmit = (data) => {
-  editProfilePopup.renderLoading(true);
-  api
-    .updateProfileInfo(data)
-    .then((res) => {
+  function makeRequest() {
+    return api.updateProfileInfo(data).then((res) => {
       userInfo.setUserInfo({
         title: res.name,
         description: res.about,
         avatar: res.avatar,
       });
-      editProfilePopup.close();
-    })
-    .catch(console.error)
-    .finally(() => {
-      editProfilePopup.renderLoading(false);
     });
+  }
+  handleSubmit(makeRequest, editProfilePopup);
 };
 
 const editProfilePopup = new PopupWithForm({
@@ -202,18 +212,15 @@ profileEditBtn.addEventListener("click", () => {
 });
 
 // AVATAR MODAL AND METHODS -----
+
 const handleAvatarFormSubmit = (data) => {
-  editAvatarPopup.renderLoading(true);
-  api
-    .updateProfileAvatar(data.link)
-    .then(() => {
+  function makeRequest() {
+    return api.updateProfileAvatar(data.link).then(() => {
       userInfo.changeAvatar(data.link);
       editAvatarPopup.close();
-    })
-    .catch(console.error)
-    .finally(() => {
-      addCardPopup.renderLoading(false);
     });
+  }
+  handleSubmit(makeRequest, editAvatarPopup);
 };
 
 const editAvatarPopup = new PopupWithForm({
@@ -237,24 +244,22 @@ const addCardPopup = new PopupWithForm({
 addCardPopup.setEventListeners();
 
 function handleAddCardFormSubmit(data) {
-  addCardPopup.renderLoading(true);
-  api
-    .addCard({ name: data.name, link: data.link })
-    .then((cardData) => {
-      section.addItem(createCard(cardData));
-      cardAddForm.reset();
-      addCardPopup.close();
-      addCardFormValidator.resetValidation();
-    })
-    .catch(console.error)
-    .finally(() => {
-      addCardPopup.renderLoading(false);
-    });
+  function makeRequest() {
+    return api
+      .addCard({ name: data.name, link: data.link })
+      .then((cardData) => {
+        section.addItem(createCard(cardData));
+        cardAddForm.reset();
+        addCardPopup.close();
+        addCardFormValidator.disableButton();
+      });
+  }
+  handleSubmit(makeRequest, addCardPopup);
 }
 
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
-  addCardFormValidator.toggleButtonState();
+  addCardFormValidator.resetValidation();
 });
 
 // FORM VALIDATION -----
