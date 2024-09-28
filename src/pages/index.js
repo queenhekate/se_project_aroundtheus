@@ -12,7 +12,7 @@ import "../pages/index.css";
 
 // CONSTANTS IMPORTS -----
 
-import { settings, initialCards } from "../utils/constants.js";
+import { settings } from "../utils/constants.js";
 
 //FORMS
 export const profileForm = document.forms["profile-form"];
@@ -115,6 +115,7 @@ function handleLikeButton(cardElement) {
       .likeCard(cardElement._id)
       .then(() => {
         cardElement.isLiked = true;
+        this._handleLikeIcon();
       })
       .catch(console.error);
   } else {
@@ -122,6 +123,7 @@ function handleLikeButton(cardElement) {
       .unlikeCard(cardElement._id)
       .then(() => {
         cardElement.isLiked = false;
+        this._handleLikeIcon();
       })
       .catch(console.error);
   }
@@ -217,7 +219,6 @@ const handleAvatarFormSubmit = (data) => {
   function makeRequest() {
     return api.updateProfileAvatar(data.link).then(() => {
       userInfo.changeAvatar(data.link);
-      editAvatarPopup.close();
     });
   }
   handleSubmit(makeRequest, editAvatarPopup);
@@ -250,7 +251,6 @@ function handleAddCardFormSubmit(data) {
       .then((cardData) => {
         section.addItem(createCard(cardData));
         cardAddForm.reset();
-        addCardPopup.close();
         addCardFormValidator.disableButton();
       });
   }
@@ -259,7 +259,6 @@ function handleAddCardFormSubmit(data) {
 
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
-  addCardFormValidator.resetValidation();
 });
 
 // FORM VALIDATION -----
