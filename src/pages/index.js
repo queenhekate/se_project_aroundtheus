@@ -166,11 +166,11 @@ popupWithImage.setEventListeners();
 
 function handleImageClick(link, name) {
   popupWithImage.open(link, name);
-  console.log("hello, world");
 }
 
 // EDIT PROFILE MODAL AND METHODS
 const handleProfileFormSubmit = (data) => {
+  editProfilePopup.renderLoading(true);
   api
     .updateProfileInfo(data)
     .then((res) => {
@@ -181,7 +181,10 @@ const handleProfileFormSubmit = (data) => {
       });
       editProfilePopup.close();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
+    });
 };
 
 const editProfilePopup = new PopupWithForm({
@@ -200,13 +203,17 @@ profileEditBtn.addEventListener("click", () => {
 
 // AVATAR MODAL AND METHODS -----
 const handleAvatarFormSubmit = (data) => {
+  editAvatarPopup.renderLoading(true);
   api
     .updateProfileAvatar(data.link)
     .then(() => {
       userInfo.changeAvatar(data.link);
       editAvatarPopup.close();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      addCardPopup.renderLoading(false);
+    });
 };
 
 const editAvatarPopup = new PopupWithForm({
@@ -229,12 +236,6 @@ const addCardPopup = new PopupWithForm({
 });
 addCardPopup.setEventListeners();
 
-// const handleAddCardFormSubmit = (data) => {
-//   const cardData = { name: data.name, link: data.link };
-//   renderCard(cardData);
-//   addCardPopup.close();
-// };
-
 function handleAddCardFormSubmit(data) {
   addCardPopup.renderLoading(true);
   api
@@ -254,7 +255,6 @@ function handleAddCardFormSubmit(data) {
 cardAddNewBtn.addEventListener("click", () => {
   addCardPopup.open();
   addCardFormValidator.toggleButtonState();
-  console.log("hello, world");
 });
 
 // FORM VALIDATION -----
