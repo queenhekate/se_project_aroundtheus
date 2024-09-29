@@ -13,12 +13,12 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
-    this._handleLikeButton = handleLikeButton;
+    this.handleLikeButton = handleLikeButton;
   }
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeButton(this);
+      this.handleLikeButton(this);
     });
 
     this._trashButton.addEventListener("click", () => {
@@ -33,13 +33,13 @@ export default class Card {
     });
   }
 
-  _handleLikeIcon() {
+  handleLikeIcon() {
     this._likeButton.classList.toggle("card__like-button-active");
   }
 
   setButtonState() {
     if (this.isLiked) {
-      this._handleLikeIcon();
+      this.handleLikeIcon();
     }
   }
 
