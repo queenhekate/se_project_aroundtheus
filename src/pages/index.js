@@ -115,7 +115,7 @@ function handleLikeButton(cardElement) {
       .likeCard(cardElement._id)
       .then(() => {
         cardElement.isLiked = true;
-        cardElemen.handleLikeIcon();
+        cardElement.handleLikeIcon();
       })
       .catch(console.error);
   } else {
@@ -123,7 +123,7 @@ function handleLikeButton(cardElement) {
       .unlikeCard(cardElement._id)
       .then(() => {
         cardElement.isLiked = false;
-        cardElemen.handleLikeIcon();
+        cardElement.handleLikeIcon();
       })
       .catch(console.error);
   }
