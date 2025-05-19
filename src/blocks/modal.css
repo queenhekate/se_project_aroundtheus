@@ -22,18 +22,11 @@
 }
 
 .modal__container {
-  position: relative;
-  background-color: white;
-  margin: 0 auto;
-  padding: 10px;
+  background-color: #fff;
+  margin: auto;
+  padding: 36px;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 430px;
-  height: 330px;
-  align-content: center;
-  justify-content: center;
+  position: relative;
 }
 
 .modal__container_type_preview {
@@ -168,11 +161,19 @@
 }
 
 @media screen and (max-width: 700px) {
+  .modal__heading {
+    width: 238px;
+    font-size: 18px;
+    margin: 0 0 45px;
+  }
+
   .modal__container {
-    width: 282px;
-    height: 322px;
-    padding: 0;
-    justify-content: space-around;
+    margin-top: 123px;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+    padding: 22px;
+    max-width: 282px;
+    box-sizing: border-box;
   }
 
   .modal__close {
@@ -180,12 +181,6 @@
     height: 26px;
     top: -40px;
     right: -5px;
-  }
-
-  .modal__heading {
-    width: 238px;
-    font-size: 18px;
-    margin: 0;
   }
 
   .modal__form {

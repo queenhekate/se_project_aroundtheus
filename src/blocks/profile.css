@@ -5,6 +5,32 @@
   align-items: center;
 }
 
+.profile__container {
+  position: relative;
+  display: flex;
+}
+
+.profile__image-edit {
+  position: absolute;
+  top: 47px;
+  left: 47px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: transparent url(../images/edit-avatar.svg) center no-repeat;
+}
+
+.profile__container:hover .profile__image-edit {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.profile__container:hover .profile__image {
+  opacity: 60%;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas:
@@ -102,7 +128,7 @@
 
   .profile__description {
     font-size: 16px;
-    text-align: left;
+    text-align: center;
   }
 
   .profile__edit-button {
@@ -128,6 +154,8 @@
     align-content: center;
     justify-content: center;
     gap: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .profile__info {
@@ -147,11 +175,12 @@
 
   .profile__image {
     margin: 0 auto;
+    justify-self: center;
   }
 
   .profile__description {
-    width: 100%;
-    text-align: center;
+    justify-self: center;
+    max-width: 196px;
   }
 
   .profile__add-button {
