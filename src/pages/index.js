@@ -13,6 +13,7 @@ import "../pages/index.css";
 // CONSTANTS IMPORTS -----
 
 import { settings } from "../utils/constants.js";
+import const defaultAvatar = "src/images/default-avatar.jpg";
 
 //FORMS
 export const profileForm = document.forms["profile-form"];
@@ -102,7 +103,7 @@ api
     userInfo.setUserInfo({
       title: data.name,
       description: data.about,
-      avatar: data.avatar,
+      avatar: data.avatar || defaultAvatar,
     });
   })
   .catch(console.error);
