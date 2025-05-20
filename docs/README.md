@@ -27,6 +27,21 @@ All images were compressed using [TinyPNG](https://tinypng.com/) to ensure faste
 
 ---
 
+## 📚 Lessons Learned
+
+This was my first project incorporating **JavaScript** and working with an **API**—a real turning point in my development journey. Learning to make asynchronous calls and manipulate the DOM opened up a new sense of possibility. I began to see how logic, design, and interactivity could work together to tell a story.
+
+Some takeaways:
+
+- **Working with APIs** taught me how data flows and how to handle it with care—especially when users are waiting on the other end.
+- **JavaScript** gave me a glimpse of how alive a website can feel. I now see code as a tool not just for function, but for expression.
+- **Debugging** stretched my patience but strengthened my confidence. I began to see bugs as invitations, not failures.
+- **Design fidelity** from Figma reinforced the importance of honoring details while still allowing room for creativity.
+
+This project reminded me why I’m here: to build with empathy, stay curious, and keep learning out loud.
+
+---
+
 ## 🤝 Let's Connect
 
 I’m always open to feedback, ideas, and opportunities that blend creativity, empathy, and impact.  
